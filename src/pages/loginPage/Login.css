@@ -1,3 +1,13 @@
+.ant-btn-primary {
+    background-color: #0EC261;
+    border-color: #0EC261;
+}
+
+.ant-btn-primary:hover {
+    background-color: #0EC261;
+    filter: brightness(90%);
+}
+
 .ant-btn-primary:focus {
     background-color: #0EC261;
 }
@@ -62,4 +72,22 @@
 
 .submitButton {
     width: 120px;
+}
+
+@media (max-width: 425px) {
+    .loginCard {
+        width: 380px;
+    }
+}
+
+@media (max-width: 375px) {
+    .loginCard {
+        width: 330px;
+    }
+}
+
+@media (max-width: 320px) {
+    .loginCard {
+        width: 290px;
+    }
 }

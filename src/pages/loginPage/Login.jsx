@@ -3,23 +3,18 @@ import './Login.css'
 import {Button, Form, Input, Space} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from "react-redux";
-import {Redirect} from "react-router-dom";
 import {postLogin} from "../../redux/authReducer";
 import logo from '../../assets/Logo Icon.png'
 
 export const Login = () => {
   const dispatch = useDispatch()
-  
+
   const onFinish = (values) => {
     dispatch(postLogin(values.username, values.password))
   };
 
-  const isAuth = useSelector(state => state.auth.isAuth)
+  const authStatus = useSelector(state => state.auth.authStatus)
 
-  if (isAuth) {
-    return <Redirect to="/admin"/>
-  }
-  
   return <div className="loginContainer">
     <div className="loginContent">
       <Space
@@ -38,26 +33,33 @@ export const Login = () => {
         <Form
           name="loginForm"
           onFinish={onFinish}
-          initialValues={{username: "intern", password: "intern-S!", remember: true}}
+          initialValues={{remember: true}} // intern intern-S!
         >
           <Form.Item
+            className="formItem"
             name="username"
             rules={[{required: true, message: 'Введите логин'}]}
+            validateStatus={authStatus === 401 ? "error" : null}
           >
             <Input
               prefix={<UserOutlined/>}
               placeholder="Username"
+              allowClear
             />
           </Form.Item>
 
           <Form.Item
+            className="formItem"
             name="password"
             rules={[{required: true, message: 'Введите пароль'}]}
+            validateStatus={authStatus === 401 ? "error" : null}
+            help={authStatus === 401 ? "Неверный логин или пароль" : null}
           >
             <Input
               prefix={<LockOutlined/>}
               type="password"
               placeholder="Password"
+              allowClear
             />
           </Form.Item>
 

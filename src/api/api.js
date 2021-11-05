@@ -27,6 +27,8 @@ export const authAPI = {
       username: login,
       password
     }
-    return instance.post(`auth/login`, body).then(r => r.data);
+    return instance.post(`auth/login`, body).catch(r => {
+      return {...r, status: 401}
+    })
   }
 }

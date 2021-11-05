@@ -23,6 +23,7 @@
     "rules": {
         "no-unused-vars": "warn",
         "import/prefer-default-export": "off",
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "no-console": "off"
     }
 }
