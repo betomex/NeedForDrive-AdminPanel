@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/NeedForDrive-AdminPanel/static/css/main.a05ecb0d.chunk.css",
-    "main.js": "/NeedForDrive-AdminPanel/static/js/main.e6655cf5.chunk.js",
-    "main.js.map": "/NeedForDrive-AdminPanel/static/js/main.e6655cf5.chunk.js.map",
+    "main.css": "/NeedForDrive-AdminPanel/static/css/main.cbb43c8e.chunk.css",
+    "main.js": "/NeedForDrive-AdminPanel/static/js/main.de2eab28.chunk.js",
+    "main.js.map": "/NeedForDrive-AdminPanel/static/js/main.de2eab28.chunk.js.map",
     "runtime-main.js": "/NeedForDrive-AdminPanel/static/js/runtime-main.c6ec3589.js",
     "runtime-main.js.map": "/NeedForDrive-AdminPanel/static/js/runtime-main.c6ec3589.js.map",
     "static/css/2.a95be28f.chunk.css": "/NeedForDrive-AdminPanel/static/css/2.a95be28f.chunk.css",
-    "static/js/2.7e317b7a.chunk.js": "/NeedForDrive-AdminPanel/static/js/2.7e317b7a.chunk.js",
-    "static/js/2.7e317b7a.chunk.js.map": "/NeedForDrive-AdminPanel/static/js/2.7e317b7a.chunk.js.map",
+    "static/js/2.eae68370.chunk.js": "/NeedForDrive-AdminPanel/static/js/2.eae68370.chunk.js",
+    "static/js/2.eae68370.chunk.js.map": "/NeedForDrive-AdminPanel/static/js/2.eae68370.chunk.js.map",
     "static/js/3.aa9cf79f.chunk.js": "/NeedForDrive-AdminPanel/static/js/3.aa9cf79f.chunk.js",
     "static/js/3.aa9cf79f.chunk.js.map": "/NeedForDrive-AdminPanel/static/js/3.aa9cf79f.chunk.js.map",
     "index.html": "/NeedForDrive-AdminPanel/index.html",
     "static/css/2.a95be28f.chunk.css.map": "/NeedForDrive-AdminPanel/static/css/2.a95be28f.chunk.css.map",
-    "static/css/main.a05ecb0d.chunk.css.map": "/NeedForDrive-AdminPanel/static/css/main.a05ecb0d.chunk.css.map",
-    "static/js/2.7e317b7a.chunk.js.LICENSE.txt": "/NeedForDrive-AdminPanel/static/js/2.7e317b7a.chunk.js.LICENSE.txt",
+    "static/css/main.cbb43c8e.chunk.css.map": "/NeedForDrive-AdminPanel/static/css/main.cbb43c8e.chunk.css.map",
+    "static/js/2.eae68370.chunk.js.LICENSE.txt": "/NeedForDrive-AdminPanel/static/js/2.eae68370.chunk.js.LICENSE.txt",
     "static/media/index.css": "/NeedForDrive-AdminPanel/static/media/Roboto-Thin.1711b41f.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.c6ec3589.js",
     "static/css/2.a95be28f.chunk.css",
-    "static/js/2.7e317b7a.chunk.js",
-    "static/css/main.a05ecb0d.chunk.css",
-    "static/js/main.e6655cf5.chunk.js"
+    "static/js/2.eae68370.chunk.js",
+    "static/css/main.cbb43c8e.chunk.css",
+    "static/js/main.de2eab28.chunk.js"
   ]
 }
