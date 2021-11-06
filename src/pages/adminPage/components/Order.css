@@ -1,0 +1,61 @@
+.orderContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 11px;
+    border-bottom: 1px solid lightgray;
+    margin-top: 11px;
+}
+
+.orderImageBlock {
+    width: 200px;
+}
+
+.orderCarImage {
+    height: 70px;
+}
+
+.orderInfoBlock {
+    width: 400px;
+    color: #999999;
+}
+
+.orderInfoBlock p span{
+    color: black;
+}
+
+.orderOptionsBlock {
+    width: 150px;
+}
+
+.orderCarOption {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.isCarOption {
+    color: #0EC261;
+    margin-right: 5px;
+}
+
+.isNotCarOptionText {
+    color: #999999;
+}
+
+.isNotCarOption {
+    color: #ff4d4f;
+    margin-right: 5px;
+}
+
+.orderPriceBlock {
+    width: 150px;
+}
+
+.orderPrice {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    letter-spacing: -0.754286px;
+    color: #121212;
+}
