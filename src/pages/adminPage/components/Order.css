@@ -18,6 +18,7 @@
 .orderInfoBlock {
     width: 400px;
     color: #999999;
+    line-height: 100%;
 }
 
 .orderInfoBlock p span{
@@ -58,4 +59,37 @@
     font-size: 24px;
     letter-spacing: -0.754286px;
     color: #121212;
+}
+
+@media (max-width: 1024px) {
+    .orderImageBlock {
+        width: 150px;
+    }
+    .orderCarImage {
+        height: 45px;
+    }
+    .orderInfoBlock {
+        width: 370px;
+    }
+}
+
+@media (max-width: 768px) {
+    .orderContent {
+        flex-wrap: wrap;
+    }
+    .orderInfoBlock {
+        width: 300px;
+    }
+    .ant-pagination-total-text {
+        display: none;
+    }
+}
+
+@media (max-width: 425px) {
+    .orderImageBlock {
+        margin-bottom: 10px;
+    }
+    .orderPriceBlock {
+        margin-top: 10px;
+    }
 }

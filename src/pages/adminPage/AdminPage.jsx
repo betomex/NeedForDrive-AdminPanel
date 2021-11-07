@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import {Avatar, Badge, Col, Layout, Menu, Row, Space} from 'antd';
+import {Avatar, Badge, Col, Layout, Menu, Row} from 'antd';
 import {BellFilled, EditOutlined} from "@ant-design/icons";
 import './AdminPage.css'
+import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 import logo from '../../assets/Logo Icon.svg'
 import avatar from '../../assets/avatar.png'
 import {OrdersList} from "./tabs/orders/OrdersList";
@@ -13,24 +14,33 @@ export const AdminPage = () => {
     setCurrentMenuItem(Number(e.key))
   }
 
+  const sizeOfPage = useBreakpoint()
+
+  let siderWidth = 0
+  if (sizeOfPage.xs) siderWidth = 35
+  else if (sizeOfPage.md) siderWidth = 200
+
   return <Layout>
     <Row className="adminPageHeader">
       <Col
-        span={3}
+        xs={{span: 13}}
+        md={{span: 6}}
+        lg={{span: 5}}
+        xl={{span: 3}}
         className="adminPageCompany"
       >
-        <Space align="baseline">
-          <img
-            src={logo}
-            alt="logo"
-            className="logoImg"
-          />
-          <p className="logoTitle">Need For Drive</p>
-        </Space>
+        <img
+          src={logo}
+          alt="logo"
+          className="logoImg"
+        />
+        <p className="logoTitle">Need For Drive</p>
       </Col>
       <Col
-        offset={19}
-        span={1}
+        xs={{offset: 5, span: 3}}
+        md={{offset: 14, span: 2}}
+        lg={{offset: 15}}
+        xl={{offset: 19, span: 1}}
         className="adminPageHeaderNotification"
       >
         <Badge
@@ -41,7 +51,9 @@ export const AdminPage = () => {
         </Badge>
       </Col>
       <Col
-        span={1}
+        xs={{span: 3}}
+        md={{span: 2}}
+        xl={{span: 1}}
         className="adminUserAccount"
       >
         <Avatar src={avatar}/>
@@ -50,7 +62,7 @@ export const AdminPage = () => {
 
     <Layout>
       <Layout.Sider
-        width={250}
+        width={siderWidth}
         className="adminPageSider"
       >
         <Menu

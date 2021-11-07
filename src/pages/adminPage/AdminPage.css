@@ -36,6 +36,7 @@
 .logoImg {
     width: 30px;
     height: 30px;
+    margin-right: 10px;
 }
 
 .logoTitle {
@@ -43,7 +44,7 @@
     font-weight: normal;
     font-size: 16px;
     color: #3D5170;
-    line-height: 100%;
+    padding-top: 12px;
 }
 
 .adminPageHeaderNotification {
@@ -89,4 +90,22 @@
 .adminPageContainer {
     padding: 24px;
     height: 92.7vh;
+}
+
+@media (max-width: 1024px) {
+    .adminPageHeader {
+        height: 50px;
+    }
+}
+
+@media (max-width: 425px) {
+    .adminPageCompany {
+        padding-left: 10px;
+    }
+    .ant-menu-item {
+        padding-left: 10px !important; /* Это свойство element.style, которое перешибается только important */
+    }
+    .adminPageContainer {
+        padding: 15px;
+    }
 }
