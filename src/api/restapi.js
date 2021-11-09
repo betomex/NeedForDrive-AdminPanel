@@ -15,3 +15,21 @@ export const ordersAPI = {
     return instance.get(`db/order?page=${page}&limit=${limit}`)
   }
 }
+
+export const carsAPI = {
+  getCars(page = 1, limit = 10) {
+    return instance.get(`db/car?page=${page}&limit=${limit}`)
+  }
+}
+
+export const citiesAPI = {
+  getCities() {
+    return instance.get(`db/city`)
+  }
+}
+
+export const pointsAPI = {
+  getPoints() {
+    return instance.get(`db/point`)
+  }
+}
