@@ -1,0 +1,8 @@
+.addEntityButton {
+    margin-bottom: 20px;
+}
+
+.entityTable {
+    overflow-y: auto;
+    height: 92%;
+}

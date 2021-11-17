@@ -19,6 +19,9 @@ export const ordersAPI = {
 export const carsAPI = {
   getCars(page = 1, limit = 10) {
     return instance.get(`db/car?page=${page}&limit=${limit}`)
+  },
+  getCategories() {
+    return instance.get(`db/category`).then(r => r.data.data)
   }
 }
 

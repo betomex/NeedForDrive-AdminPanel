@@ -1,5 +1,10 @@
 import React from "react";
 import {Image} from "antd";
+import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setCarAction, setCarToEdit} from "../../redux/carsReducer";
+import {setCityAction, setCityToEdit} from "../../redux/citiesReducer";
+import {setPointAction, setPointToEdit} from "../../redux/pointsReducer";
 
 export const carsColumns = [
   {
@@ -44,6 +49,18 @@ export const carsColumns = [
       />
     )
   },
+  {
+    title: 'Действия',
+    key: 'actions',
+    render: (car) => {
+      const dispatch = useDispatch()
+
+      return <Link to="car-edit" onClick={() => {
+        dispatch(setCarAction("update"))
+        dispatch(setCarToEdit(car))
+      }}>Изменить</Link>
+    }
+  },
 ];
 
 export const citiesColumns = [
@@ -51,7 +68,19 @@ export const citiesColumns = [
     title: 'Наименование',
     dataIndex: 'name',
     key: 'name',
-  }
+  },
+  {
+    title: 'Действия',
+    key: 'actions',
+    render: (city) => {
+      const dispatch = useDispatch()
+
+      return <Link to="city-edit" onClick={() => {
+        dispatch(setCityAction("update"))
+        dispatch(setCityToEdit(city))
+      }}>Изменить</Link>
+    }
+  },
 ];
 
 export const pointsColumns = [
@@ -70,5 +99,17 @@ export const pointsColumns = [
     title: 'Описание',
     dataIndex: 'name',
     key: 'name',
-  }
+  },
+  {
+    title: 'Действия',
+    key: 'actions',
+    render: (point) => {
+      const dispatch = useDispatch()
+
+      return <Link to="point-edit" onClick={() => {
+        dispatch(setPointAction("update"))
+        dispatch(setPointToEdit(point))
+      }}>Изменить</Link>
+    }
+  },
 ];

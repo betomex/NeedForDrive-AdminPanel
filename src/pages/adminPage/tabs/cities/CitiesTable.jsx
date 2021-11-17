@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {Layout, Table} from "antd";
+import {Button, Layout, Table} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import {getCities} from "../../../../redux/citiesReducer";
+import {Link} from "react-router-dom";
+import {getCities, setCityAction, setCityToEdit} from "../../../../redux/citiesReducer";
 import {citiesColumns} from "../../tablesColumns";
+import './CitiesTable.css'
 
 export const CitiesTable = () => {
   const [loading, setLoading] = useState(true)
@@ -21,7 +23,18 @@ export const CitiesTable = () => {
   return <>
     <h1 className="pageTitle">Города</h1>
     <Layout.Content className="ordersListContent">
+      <Link to="city-edit">
+        <Button
+          type="primary"
+          className="addEntityButton"
+          onClick={() => {
+            dispatch(setCityAction("create"))
+            dispatch(setCityToEdit(null))
+          }}
+        >Добавить город</Button>
+      </Link>
       <Table
+        className="cityTable"
         bordered
         columns={citiesColumns}
         dataSource={cities}

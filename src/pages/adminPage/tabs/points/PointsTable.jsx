@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Layout, Table} from "antd";
-import {getPoints} from "../../../../redux/pointsReducer";
+import {Button, Layout, Table} from "antd";
+import {Link} from "react-router-dom";
+import {getPoints, setPointAction, setPointToEdit} from "../../../../redux/pointsReducer";
 import {pointsColumns} from "../../tablesColumns";
+import './PointsTable.css'
 
 export const PointsTable = () => {
   const [loading, setLoading] = useState(true)
@@ -21,7 +23,18 @@ export const PointsTable = () => {
   return <>
     <h1 className="pageTitle">Пункты</h1>
     <Layout.Content className="ordersListContent">
+      <Link to="point-edit">
+        <Button
+          type="primary"
+          className="addEntityButton"
+          onClick={() => {
+            dispatch(setPointAction("create"))
+            dispatch(setPointToEdit(null))
+          }}
+        >Добавить пункт</Button>
+      </Link>
       <Table
+        className="pointTable"
         bordered
         columns={pointsColumns}
         dataSource={points}
