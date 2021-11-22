@@ -4,6 +4,7 @@ import {Redirect, Route, Switch} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {AdminPage} from "./pages/adminPage/AdminPage";
 import {Login} from "./pages/loginPage/Login";
+import {PrivateRoute} from "./components/PrivateRoute";
 
 const App = () => {
   const isAuth = useSelector(state => state.auth.isAuth)
@@ -14,18 +15,22 @@ const App = () => {
       path="/"
       render={() => <Redirect to="/admin"/>}
     />
-    <Route
+
+    <PrivateRoute
       path="/admin"
-      render={() => {
-        return isAuth ? <AdminPage/> : <Redirect to="/login"/>
-      }}
-    />
-    <Route
+      redirect="/login"
+      condition={isAuth}
+    >
+      <AdminPage/>
+    </PrivateRoute>
+
+    <PrivateRoute
       path="/login"
-      render={() => {
-        return !isAuth ? <Login/> : <Redirect to="/admin"/>
-      }}
-    />
+      redirect="/admin"
+      condition={!isAuth}
+    >
+      <Login/>
+    </PrivateRoute>
   </Switch>
 }
 
