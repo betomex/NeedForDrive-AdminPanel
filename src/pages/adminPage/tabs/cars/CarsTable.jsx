@@ -2,16 +2,15 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Layout, Table} from "antd";
 import {Link} from "react-router-dom";
-import {getCars, setCarAction, setCarToEdit} from "../../../../redux/carsReducer";
+import {getCars, setCarAction, setCarToEdit, setCurrentPage} from "../../../../redux/carsReducer";
 import {carsColumns} from "../../tablesColumns";
 import './CarsTable.css'
 
 export const CarsTable = () => {
   const [loading, setLoading] = useState(true)
-  const [currentPage, setCurrentPage] = useState(1)
 
   const carsData = useSelector(state => state.cars)
-  const {cars, totalCount} = carsData
+  const {cars, totalCount, currentPage} = carsData
 
   const dispatch = useDispatch()
 
@@ -37,6 +36,7 @@ export const CarsTable = () => {
       <div className="entityTable">
         <Table
           bordered
+          sticky
           columns={carsColumns}
           dataSource={cars}
           loading={loading}
@@ -47,7 +47,7 @@ export const CarsTable = () => {
             current: currentPage,
             showTotal: (total, range) => `${range[0]}-${range[1]} из ${total} авто`,
             onChange: page => {
-              setCurrentPage(page)
+              dispatch(setCurrentPage(page))
             }
           }}
         />

@@ -1,18 +1,37 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import {useSelector} from "react-redux";
-import {Button, Form, Input} from "antd";
+import {useDispatch, useSelector} from "react-redux";
+import {Button, Form, Input, message} from "antd";
 import {Link} from "react-router-dom";
+import {postCity, putCity} from "../../../redux/citiesReducer";
 
 export const CityEditForm = (props) => {
   const {cityToEdit} = props
 
-  const cityAction = useSelector(state => state.cities.cityAction)
+  const citiesData = useSelector(state => state.cities)
+  const {cityAction, citySuccess} = citiesData
+
+  const dispatch = useDispatch()
 
   const onFormSubmitHandle = (values) => {
-    console.log(values)
-    console.log(cityAction)
-    /* POST | PUT REQUEST */
+    switch (cityAction) {
+      case "create": {
+        dispatch(postCity(values))
+        break
+      }
+      case "update": {
+        dispatch(putCity(cityToEdit.id, values))
+        break
+      }
+      default:
+        break
+    }
+  }
+
+  if (citySuccess && cityAction === "update") {
+    message.success("Успех! Город сохранён")
+  } else if (citySuccess && cityAction === "create") {
+    message.success("Успех! Город добавлен")
   }
 
   return <Form
@@ -38,7 +57,12 @@ export const CityEditForm = (props) => {
         </Button>
       </Form.Item>
 
-      <Link to="/admin"><Button danger className="cancelButton">Отменить</Button></Link>
+      <Link to="/admin">
+        {citySuccess
+          ? <Button className="cancelButton">Вернуться</Button>
+          : <Button danger className="cancelButton">Отменить</Button>
+        }
+      </Link>
     </div>
   </Form>
 }

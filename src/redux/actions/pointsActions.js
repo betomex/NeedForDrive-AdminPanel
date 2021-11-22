@@ -3,4 +3,5 @@ export const pointsActions = {
   setTotalPointsCount: (count) => ({type: "POINTS/POINTS_TOTAL_COUNT", payload: count}),
   setPointToEdit: (point) => ({type: "POINTS/SET_POINT_TO_EDIT", payload: point}),
   setPointAction: (action) => ({type: "POINTS/SET_POINT_ACTION", payload: action}),
+  setPointSuccess: (status) => ({type: "POINTS/SET_POINT_SUCCESS", payload: status}),
 }

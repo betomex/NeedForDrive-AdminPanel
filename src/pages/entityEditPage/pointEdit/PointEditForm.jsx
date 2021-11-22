@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {AutoComplete, Button, Form, Input} from "antd";
+import {AutoComplete, Button, Form, Input, message} from "antd";
 import {Link} from "react-router-dom";
 import {getCities} from "../../../redux/citiesReducer";
+import {postPoint, putPoint} from "../../../redux/pointsReducer";
 
 export const PointEditForm = (props) => {
   const {pointToEdit} = props
 
-  const pointAction = useSelector(state => state.points.pointAction)
+  const pointData = useSelector(state => state.points)
+  const {pointAction, pointSuccess} = pointData
   const cities = useSelector(state => state.cities.cities)
   const options = cities.map(city => ({value: city.name}))
   const dispatch = useDispatch()
@@ -21,14 +23,30 @@ export const PointEditForm = (props) => {
         break
       }
     }
-    console.log({...values, cityId})
-    console.log(pointAction)
-    /* POST | PUT REQUEST */
+
+    switch (pointAction) {
+      case "create": {
+        dispatch(postPoint({...values, cityId}))
+        break
+      }
+      case "update": {
+        dispatch(putPoint(pointToEdit.id, {...values, cityId}))
+        break
+      }
+      default:
+        break
+    }
   }
 
   useEffect(() => {
     dispatch(getCities())
   }, [])
+
+  if (pointSuccess && pointAction === "update") {
+    message.success("Успех! Пункт обновлён")
+  } else if (pointSuccess && pointAction === "create") {
+    message.success("Успех! Пункт добавлен")
+  }
 
   return <Form
     name="editPoint"
@@ -79,7 +97,12 @@ export const PointEditForm = (props) => {
         </Button>
       </Form.Item>
 
-      <Link to="/admin"><Button danger className="cancelButton">Отменить</Button></Link>
+      <Link to="/admin">
+        {pointSuccess
+          ? <Button className="cancelButton">Вернуться</Button>
+          : <Button danger className="cancelButton">Отменить</Button>
+        }
+      </Link>
     </div>
   </Form>
 }

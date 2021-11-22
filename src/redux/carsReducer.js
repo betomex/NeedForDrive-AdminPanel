@@ -4,9 +4,11 @@ import {carsActions} from "./actions/carsActions";
 const initialState = {
   cars: [],
   carToEdit: null,
+  currentPage: 1,
   totalCount: null,
   categories: [],
-  carAction: null
+  carAction: null,
+  carSuccess: false
 };
 
 const carsReducer = (state = initialState, action) => {
@@ -41,6 +43,18 @@ const carsReducer = (state = initialState, action) => {
         carAction: action.payload
       }
     }
+    case "CARS/SET_CAR_SUCCESS": {
+      return {
+        ...state,
+        carSuccess: action.payload
+      }
+    }
+    case "CARS/SET_CURRENT_PAGE": {
+      return {
+        ...state,
+        currentPage: action.payload
+      }
+    }
     default:
       return state;
   }
@@ -64,7 +78,34 @@ export const setCarToEdit = (car) => async (dispatch) => {
 }
 
 export const setCarAction = (action) => async (dispatch) => {
+  dispatch(carsActions.setCarSuccess(false))
   dispatch(carsActions.setCarAction(action))
+}
+
+export const putCar = (carId, data) => async (dispatch) => {
+  const response = await carsAPI.putCar(carId, data)
+  if (response.status === 200) {
+    dispatch(carsActions.setCarSuccess(true))
+  } else {
+    dispatch(carsActions.setCarSuccess(false))
+  }
+}
+
+export const postCar = (data) => async (dispatch) => {
+  const response = await carsAPI.postCar(data)
+  if (response.status === 200) {
+    dispatch(carsActions.setCarSuccess(true))
+  } else {
+    dispatch(carsActions.setCarSuccess(false))
+  }
+}
+
+export const deleteCar = (carId) => async () => {
+  await carsAPI.deleteCar(carId)
+}
+
+export const setCurrentPage = (page) => async (dispatch) => {
+  dispatch(carsActions.setCurrentPage(page))
 }
 
 export default carsReducer;

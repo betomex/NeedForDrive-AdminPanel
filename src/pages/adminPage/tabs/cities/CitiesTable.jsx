@@ -36,6 +36,7 @@ export const CitiesTable = () => {
       <Table
         className="cityTable"
         bordered
+        sticky
         columns={citiesColumns}
         dataSource={cities}
         loading={loading}

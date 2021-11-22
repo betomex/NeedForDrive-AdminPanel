@@ -5,7 +5,8 @@ const initialState = {
   points: [],
   totalCount: null,
   pointToEdit: null,
-  pointAction: null
+  pointAction: null,
+  pointSuccess: false
 };
 
 const pointsReducer = (state = initialState, action) => {
@@ -34,6 +35,12 @@ const pointsReducer = (state = initialState, action) => {
         pointAction: action.payload
       }
     }
+    case "POINTS/SET_POINT_SUCCESS": {
+      return {
+        ...state,
+        pointSuccess: action.payload
+      }
+    }
     default:
       return state;
   }
@@ -52,7 +59,26 @@ export const setPointToEdit = (point) => async (dispatch) => {
 }
 
 export const setPointAction = (action) => async (dispatch) => {
+  dispatch(pointsActions.setPointSuccess(false))
   dispatch(pointsActions.setPointAction(action))
+}
+
+export const putPoint = (pointId, data) => async (dispatch) => {
+  const response = await pointsAPI.putPoint(pointId, data)
+  if (response.status === 200) {
+    dispatch(pointsActions.setPointSuccess(true))
+  } else {
+    dispatch(pointsActions.setPointSuccess(false))
+  }
+}
+
+export const postPoint = (data) => async (dispatch) => {
+  const response = await pointsAPI.postPoint(data)
+  if (response.status === 200) {
+    dispatch(pointsActions.setPointSuccess(true))
+  } else {
+    dispatch(pointsActions.setPointSuccess(false))
+  }
 }
 
 export default pointsReducer;

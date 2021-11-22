@@ -25,7 +25,17 @@ export const CarEditPage = () => {
         <Upload
           name="file"
           beforeUpload={(e) => {
-            setImage(e)
+            const reader = new FileReader();
+            reader.readAsDataURL(e);
+            reader.onload = () => {
+              const tempThumbnail = {
+                mimetype: e.type,
+                originalname: e.name,
+                path: reader.result,
+                size: e.size
+              }
+              setImage(tempThumbnail)
+            };
             return false
           }}
         >

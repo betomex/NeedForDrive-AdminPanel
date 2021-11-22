@@ -36,6 +36,7 @@ export const PointsTable = () => {
       <Table
         className="pointTable"
         bordered
+        sticky
         columns={pointsColumns}
         dataSource={points}
         loading={loading}

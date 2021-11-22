@@ -3,4 +3,5 @@ export const citiesActions = {
   setTotalCitiesCount: (count) => ({type: "CITIES/CITIES_TOTAL_COUNT", payload: count}),
   setCityToEdit: (city) => ({type: "CITIES/SET_CITY_TO_EDIT", payload: city}),
   setCityAction: (action) => ({type: "CITIES/SET_CITY_ACTION", payload: action}),
+  setCitySuccess: (status) => ({type: "CITIES/SET_CITY_SUCCESS", payload: status}),
 }

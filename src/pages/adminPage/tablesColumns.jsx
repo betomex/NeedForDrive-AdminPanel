@@ -1,8 +1,9 @@
 import React from "react";
-import {Image} from "antd";
+import {Button, Image, Modal, Space} from "antd";
 import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {setCarAction, setCarToEdit} from "../../redux/carsReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {ExclamationCircleOutlined} from "@ant-design/icons";
+import {deleteCar, getCars, setCarAction, setCarToEdit, setCurrentPage} from "../../redux/carsReducer";
 import {setCityAction, setCityToEdit} from "../../redux/citiesReducer";
 import {setPointAction, setPointToEdit} from "../../redux/pointsReducer";
 
@@ -54,11 +55,30 @@ export const carsColumns = [
     key: 'actions',
     render: (car) => {
       const dispatch = useDispatch()
+      const currentPage = useSelector(state => state.cars.currentPage)
 
-      return <Link to="car-edit" onClick={() => {
-        dispatch(setCarAction("update"))
-        dispatch(setCarToEdit(car))
-      }}>Изменить</Link>
+      const showConfirm = () => {
+        Modal.confirm({
+          title: 'Точно удалить машину?',
+          icon: <ExclamationCircleOutlined/>,
+          onOk() {
+            console.log(currentPage)
+            dispatch(deleteCar(car.id))
+            dispatch(setCurrentPage(1))
+            dispatch(getCars(1))
+          }
+        });
+      }
+
+      return <Space>
+        <Link to="car-edit" onClick={() => {
+          dispatch(setCarAction("update"))
+          dispatch(setCarToEdit(car))
+        }}>Изменить</Link>
+        <Button type="link" onClick={() => {
+          dispatch(showConfirm)
+        }}>Удалить</Button>
+      </Space>
     }
   },
 ];

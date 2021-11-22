@@ -5,7 +5,8 @@ const initialState = {
   cities: [],
   totalCount: null,
   cityAction: null,
-  cityToEdit: null
+  cityToEdit: null,
+  citySuccess: false
 };
 
 const citiesReducer = (state = initialState, action) => {
@@ -34,6 +35,12 @@ const citiesReducer = (state = initialState, action) => {
         cityAction: action.payload
       }
     }
+    case "CITIES/SET_CITY_SUCCESS": {
+      return {
+        ...state,
+        citySuccess: action.payload
+      }
+    }
     default:
       return state;
   }
@@ -52,7 +59,26 @@ export const setCityToEdit = (city) => async (dispatch) => {
 }
 
 export const setCityAction = (action) => async (dispatch) => {
+  dispatch(citiesActions.setCitySuccess(false))
   dispatch(citiesActions.setCityAction(action))
+}
+
+export const putCity = (cityId, data) => async (dispatch) => {
+  const response = await citiesAPI.putCity(cityId, data)
+  if (response.status === 200) {
+    dispatch(citiesActions.setCitySuccess(true))
+  } else {
+    dispatch(citiesActions.setCitySuccess(false))
+  }
+}
+
+export const postCity = (data) => async (dispatch) => {
+  const response = await citiesAPI.postCity(data)
+  if (response.status === 200) {
+    dispatch(citiesActions.setCitySuccess(true))
+  } else {
+    dispatch(citiesActions.setCitySuccess(false))
+  }
 }
 
 export default citiesReducer;

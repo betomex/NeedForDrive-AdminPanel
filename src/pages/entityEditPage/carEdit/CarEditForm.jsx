@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, {useEffect, useRef, useState} from "react";
-import {AutoComplete, Button, Checkbox, Form, Input} from "antd";
+import {AutoComplete, Button, Checkbox, Form, Input, message} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getCategories} from "../../../redux/carsReducer";
+import {getCategories, postCar, putCar} from "../../../redux/carsReducer";
 
 export const CarEditForm = (props) => {
   const {image, carToEdit} = props
@@ -15,12 +15,12 @@ export const CarEditForm = (props) => {
   })) || [])
 
   const carsData = useSelector(state => state.cars)
-  const {categories, carAction} = carsData
+  const {categories, carAction, carSuccess} = carsData
   const options = categories.map(category => ({value: category.name}))
   const dispatch = useDispatch()
   const addColor = useRef()
 
-  const onFormSubmitHandle = (values) => {
+  const onFormSubmitHandle = async (values) => {
     let categoryId = null
     for (let i = 0; i < categories.length; i += 1) {
       if (categories[i].name === values.categoryId) {
@@ -28,14 +28,41 @@ export const CarEditForm = (props) => {
         break
       }
     }
-    console.log({...values, image, categoryId})
-    console.log(carAction)
-    /* POST | PUT REQUEST */
+
+    const formData = {
+      priceMin: Number(values.priceMin),
+      priceMax: Number(values.priceMax),
+      name: values.name,
+      number: values.number,
+      description: values.description,
+      categoryId,
+      colors: values.colorsList,
+      thumbnail: image
+    }
+
+    switch (carAction) {
+      case "create": {
+        dispatch(postCar(formData))
+        break
+      }
+      case "update": {
+        dispatch(putCar(carToEdit.id, formData))
+        break
+      }
+      default:
+        break
+    }
   }
 
   useEffect(() => {
     dispatch(getCategories())
   }, [])
+
+  if (carSuccess && carAction === "update") {
+    message.success("Успех! Машина обновлёна")
+  } else if (carSuccess && carAction === "create") {
+    message.success("Успех! Машина добавлена")
+  }
 
   return <Form
     name="editCar"
@@ -157,7 +184,12 @@ export const CarEditForm = (props) => {
         </Button>
       </Form.Item>
 
-      <Link to="/admin"><Button danger className="cancelButton">Отменить</Button></Link>
+      <Link to="/admin">
+        {carSuccess
+          ? <Button className="cancelButton">Вернуться</Button>
+          : <Button danger className="cancelButton">Отменить</Button>
+        }
+      </Link>
     </div>
   </Form>
 }
