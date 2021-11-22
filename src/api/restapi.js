@@ -6,7 +6,7 @@ const instance = axios.create({
     "X-Api-Factory-Application-Id": "5e25c641099b810b946c5d5b",
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
-    "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
   },
 });
 
