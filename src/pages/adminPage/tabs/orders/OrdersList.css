@@ -1,10 +1,10 @@
-.ant-select .ant-select-selector {
+/*.ant-select .ant-select-selector {
     display: none;
 }
 
 .ant-select-arrow {
     display: none;
-}
+}*/
 
 .pageTitle {
     font-style: normal;
@@ -22,11 +22,18 @@
     0 10px 10px rgba(90, 97, 105, 0.06),
     0 7px 70px rgba(90, 97, 105, 0.1);
     border-radius: 9px;
-    overflow-y: auto;
 }
 
 .ordersList {
+    height: 82%;
+    overflow-y: auto;
     margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .ordersList {
+        height: 72%;
+    }
 }
 
 @media (max-width: 425px) {
@@ -35,5 +42,14 @@
     }
     .ordersListContent {
         padding: 15px;
+    }
+    .ordersList {
+        height: 62%;
+    }
+}
+
+@media (max-width: 375px) {
+    .ordersList {
+        height: 55%;
     }
 }

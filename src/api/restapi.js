@@ -11,7 +11,19 @@ const instance = axios.create({
 });
 
 export const ordersAPI = {
-  getOrders(page = 1, limit = 20) {
-    return instance.get(`db/order?page=${page}&limit=${limit}`)
+  getOrders(page, limit, filters) {
+    let filterParams = ``
+    if (filters) {
+      if (filters.cityId) filterParams += `&cityId=${filters.cityId}`
+      if (filters.orderStatus) filterParams += `&orderStatusId=${filters.orderStatus}`
+      if (filters.dateFrom) filterParams += `&dateFrom%5B%24gt%5D=${filters.dateFrom}`
+    }
+    return instance.get(`db/order?page=${page}&limit=${limit}${filterParams}`)
+  },
+  getOrderStatus() {
+    return instance.get(`db/orderStatus`).then(r => r.data.data)
+  },
+  getCities() {
+    return instance.get(`db/city`).then(r => r.data.data)
   }
 }
