@@ -26,7 +26,10 @@ export const OrdersFilterForm = (props) => {
       className="filterFormItem"
       name="cityId"
     >
-      <Select placeholder="Выберите город">
+      <Select
+        placeholder="Выберите город"
+        allowClear
+      >
         {cities.map(city =>
           <Select.Option
             key={city.id}
@@ -40,7 +43,10 @@ export const OrdersFilterForm = (props) => {
       className="filterFormItem"
       name="orderStatus"
     >
-      <Select placeholder="Выберите статус заказа">
+      <Select
+        placeholder="Выберите статус заказа"
+        allowClear
+      >
         {orderStatus.map(status =>
           <Select.Option
             key={status.id}
@@ -54,7 +60,10 @@ export const OrdersFilterForm = (props) => {
       className="filterFormItem"
       name="dateFrom"
     >
-      <Select placeholder="Выберите промежуток">
+      <Select
+        placeholder="Выберите промежуток"
+        allowClear
+      >
         <Select.Option value="month">За последний месяц</Select.Option>
         <Select.Option value="week">За последнюю неделю</Select.Option>
         <Select.Option value="day">За последний день</Select.Option>
