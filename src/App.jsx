@@ -19,7 +19,7 @@ const App = () => {
     <PrivateRoute
       path="/admin"
       redirect="/login"
-      condition={isAuth}
+      isAuth={isAuth}
     >
       <AdminPage/>
     </PrivateRoute>
@@ -27,7 +27,7 @@ const App = () => {
     <PrivateRoute
       path="/login"
       redirect="/admin"
-      condition={!isAuth}
+      isAuth={!isAuth}
     >
       <Login/>
     </PrivateRoute>

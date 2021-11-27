@@ -1,0 +1,95 @@
+.orderContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 11px;
+    border-bottom: 1px solid lightgray;
+    margin-top: 11px;
+}
+
+.orderImageBlock {
+    width: 200px;
+}
+
+.orderCarImage {
+    height: 70px;
+}
+
+.orderInfoBlock {
+    width: 400px;
+    color: #999999;
+    line-height: 100%;
+}
+
+.orderInfoBlock p span{
+    color: black;
+}
+
+.orderOptionsBlock {
+    width: 150px;
+}
+
+.orderCarOption {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.isCarOption {
+    color: #0EC261;
+    margin-right: 5px;
+}
+
+.isNotCarOptionText {
+    color: #999999;
+}
+
+.isNotCarOption {
+    color: #ff4d4f;
+    margin-right: 5px;
+}
+
+.orderPriceBlock {
+    width: 150px;
+}
+
+.orderPrice {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    letter-spacing: -0.754286px;
+    color: #121212;
+}
+
+@media (max-width: 1024px) {
+    .orderImageBlock {
+        width: 150px;
+    }
+    .orderCarImage {
+        height: 45px;
+    }
+    .orderInfoBlock {
+        width: 370px;
+    }
+}
+
+@media (max-width: 768px) {
+    .orderContent {
+        flex-wrap: wrap;
+    }
+    .orderInfoBlock {
+        width: 300px;
+    }
+    .ant-pagination-total-text {
+        display: none;
+    }
+}
+
+@media (max-width: 425px) {
+    .orderImageBlock {
+        margin-bottom: 10px;
+    }
+    .orderPriceBlock {
+        margin-top: 10px;
+    }
+}

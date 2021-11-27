@@ -1,0 +1,10 @@
+.filterForm {
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 0 0.5px 0 #999999;
+}
+
+.filterFormItem {
+    width: 200px;
+    margin-right: 15px;
+}

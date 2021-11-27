@@ -3,7 +3,7 @@ import './Login.css'
 import {Button, Form, Input, Space} from "antd";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from "react-redux";
-import logo from '../../assets/Logo Icon.png'
+import logo from '../../assets/Logo Icon.svg'
 import {postLogin} from "../../redux/actions/authActions";
 
 export const Login = () => {
