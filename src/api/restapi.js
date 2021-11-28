@@ -10,6 +10,16 @@ const instance = axios.create({
   },
 });
 
+const sortParams = (sorters) => {
+  let sorterParams = ``
+  if (sorters) {
+    if (sorters.field && sorters.sortDirection) {
+      sorterParams += `?sort[${sorters.field}]=${sorters.sortDirection}`
+    }
+  }
+  return sorterParams
+}
+
 export const ordersAPI = {
   getOrders(page, limit, filters) {
     let filterParams = ``
@@ -22,8 +32,26 @@ export const ordersAPI = {
   },
   getOrderStatus() {
     return instance.get(`db/orderStatus`).then(r => r.data.data)
-  },
-  getCities() {
-    return instance.get(`db/city`).then(r => r.data.data)
+  }
+}
+
+export const carsAPI = {
+  getCars(page = 1, limit = 10, sorters) {
+    const url = sorters
+      ? `db/car${sortParams(sorters)}&page=${page}&limit=${limit}`
+      : `db/car?page=${page}&limit=${limit}`
+    return instance.get(url)
+  }
+}
+
+export const citiesAPI = {
+  getCities(sorters) {
+    return instance.get(`db/city${sortParams(sorters)}`)
+  }
+}
+
+export const pointsAPI = {
+  getPoints(sorters) {
+    return instance.get(`db/point${sortParams(sorters)}`)
   }
 }

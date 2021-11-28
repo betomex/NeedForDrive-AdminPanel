@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Layout, Pagination} from "antd";
+import {Collapse, Layout, Pagination} from "antd";
 import './OrdersList.css'
 import {useDispatch, useSelector} from "react-redux";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
@@ -11,6 +11,7 @@ export const OrdersList = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [limit, setLimit] = useState(10)
   const [filters, setFilters] = useState(null)
+  const [collapsedItems, setCollapsedItems] = useState([])
 
   const ordersData = useSelector(state => state.orders)
   const {orders, totalCount} = ordersData
@@ -50,8 +51,21 @@ export const OrdersList = () => {
   return <>
     <h1 className="pageTitle">Заказы</h1>
     <Layout.Content className="ordersListContent">
-      <OrdersFilterForm onFilterFormFinish={onFilterFormFinish}/>
-      <div className="ordersList">
+      {sizeOfPage.xs
+        ? <Collapse
+          ghost
+          onChange={setCollapsedItems}
+        >
+          <Collapse.Panel key={1} header="Фильтры">
+            <OrdersFilterForm onFilterFormFinish={onFilterFormFinish}/>
+          </Collapse.Panel>
+        </Collapse>
+        : <OrdersFilterForm onFilterFormFinish={onFilterFormFinish}/>
+      }
+      <div
+        className="ordersList"
+        style={collapsedItems.length ? {height: "35%"} : {height: "70%"}}
+      >
         {orders.map(order => <Order order={order} key={order.id}/>)}
       </div>
       <Pagination
