@@ -30,7 +30,13 @@ export const Order = (props) => {
     </div>
 
     <div className="orderInfoBlock">
-      <p><span>{order?.carId?.name}</span> в <span>{order?.cityId?.name}</span>, {order?.pointId?.address}</p>
+      <p>
+        <span>{order?.carId?.name}</span>
+        {order?.cityId?.name && " в "}
+        <span>{order?.cityId?.name}</span>
+        {order?.pointId?.address && ", "}
+        {order?.pointId?.address}
+      </p>
       <p>{dateFrom.toLocaleString()} — {dateTo.toLocaleString()}</p>
       <p>Цвет: <span>{order?.color}</span></p>
     </div>

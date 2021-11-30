@@ -46,14 +46,6 @@ const citiesReducer = (state = initialState, action) => {
   }
 }
 
-export const getCities = () => async (dispatch) => {
-  const response = await citiesAPI.getCities()
-  if (!initialState.totalCount) {
-    dispatch(citiesActions.setTotalCitiesCount(response.data.count))
-  }
-  dispatch(citiesActions.setCitiesPortion(response.data.data))
-}
-
 export const setCityToEdit = (city) => async (dispatch) => {
   dispatch(citiesActions.setCityToEdit(city))
 }

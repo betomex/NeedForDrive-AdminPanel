@@ -6,19 +6,39 @@ const instance = axios.create({
     "X-Api-Factory-Application-Id": "5e25c641099b810b946c5d5b",
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
-    "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
   },
 });
 
+const sortParams = (sorters) => {
+  let sorterParams = ``
+  if (sorters && sorters.field && sorters.sortDirection) {
+    sorterParams += `?sort[${sorters.field}]=${sorters.sortDirection}`
+  }
+  return sorterParams
+}
+
 export const ordersAPI = {
-  getOrders(page = 1, limit = 20) {
-    return instance.get(`db/order?page=${page}&limit=${limit}`)
+  getOrders(page, limit, filters) {
+    let filterParams = ``
+    if (filters) {
+      if (filters.cityId) filterParams += `&cityId=${filters.cityId}`
+      if (filters.orderStatus) filterParams += `&orderStatusId=${filters.orderStatus}`
+      if (filters.dateFrom) filterParams += `&dateFrom%5B%24gt%5D=${filters.dateFrom}`
+    }
+    return instance.get(`db/order?page=${page}&limit=${limit}${filterParams}`)
+  },
+  getOrderStatus() {
+    return instance.get(`db/orderStatus`).then(r => r.data.data)
   }
 }
 
 export const carsAPI = {
-  getCars(page = 1, limit = 10) {
-    return instance.get(`db/car?page=${page}&limit=${limit}`)
+  getCars(page = 1, limit = 10, sorters) {
+    const url = sorters
+      ? `db/car${sortParams(sorters)}&page=${page}&limit=${limit}`
+      : `db/car?page=${page}&limit=${limit}`
+    return instance.get(url)
   },
   getCategories() {
     return instance.get(`db/category`).then(r => r.data.data)
@@ -35,8 +55,8 @@ export const carsAPI = {
 }
 
 export const citiesAPI = {
-  getCities() {
-    return instance.get(`db/city`)
+  getCities(sorters) {
+    return instance.get(`db/city${sortParams(sorters)}`)
   },
   putCity(cityId, data) {
     return instance.put(`db/city/${cityId}`, data)
@@ -47,8 +67,8 @@ export const citiesAPI = {
 }
 
 export const pointsAPI = {
-  getPoints() {
-    return instance.get(`db/point`)
+  getPoints(sorters) {
+    return instance.get(`db/point${sortParams(sorters)}`)
   },
   putPoint(pointId, data) {
     return instance.put(`db/point/${pointId}`, data)

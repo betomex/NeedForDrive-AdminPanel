@@ -60,14 +60,6 @@ const carsReducer = (state = initialState, action) => {
   }
 }
 
-export const getCars = (page) => async (dispatch) => {
-  const response = await carsAPI.getCars(page)
-  if (!initialState.totalCount) {
-    dispatch(carsActions.setTotalCarsCount(response.data.count))
-  }
-  dispatch(carsActions.setCarsPortion(response.data.data))
-}
-
 export const getCategories = () => async (dispatch) => {
   const data = await carsAPI.getCategories()
   dispatch(carsActions.setCategories(data))

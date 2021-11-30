@@ -4,6 +4,7 @@ import {Redirect, Route, Switch} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {AdminPage} from "./pages/adminPage/AdminPage";
 import {Login} from "./pages/loginPage/Login";
+import {PrivateRoute} from "./components/PrivateRoute";
 import {CarEditPage} from "./pages/entityEditPage/carEdit/CarEditPage";
 import {CityEditPage} from "./pages/entityEditPage/cityEdit/CityEditPage";
 import {PointEditPage} from "./pages/entityEditPage/pointEdit/PointEditPage";
@@ -17,36 +18,46 @@ const App = () => {
       path="/"
       render={() => <Redirect to="/admin"/>}
     />
-    <Route
+
+    <PrivateRoute
       path="/admin"
-      render={() => {
-        return isAuth ? <AdminPage/> : <Redirect to="/login"/>
-      }}
-    />
-    <Route
+      redirect="/login"
+      isAuth={isAuth}
+    >
+      <AdminPage/>
+    </PrivateRoute>
+
+    <PrivateRoute
       path="/login"
-      render={() => {
-        return !isAuth ? <Login/> : <Redirect to="/admin"/>
-      }}
-    />
-    <Route
+      redirect="/admin"
+      isAuth={!isAuth}
+    >
+      <Login/>
+    </PrivateRoute>
+
+    <PrivateRoute
       path="/car-edit"
-      render={() => {
-        return isAuth ? <CarEditPage/> : <Redirect to="/login"/>
-      }}
-    />
-    <Route
+      redirect="/login"
+      isAuth={isAuth}
+    >
+      <CarEditPage/>
+    </PrivateRoute>
+
+    <PrivateRoute
       path="/city-edit"
-      render={() => {
-        return isAuth ? <CityEditPage/> : <Redirect to="/login"/>
-      }}
-    />
-    <Route
+      redirect="/login"
+      isAuth={isAuth}
+    >
+      <CityEditPage/>
+    </PrivateRoute>
+
+    <PrivateRoute
       path="/point-edit"
-      render={() => {
-        return isAuth ? <PointEditPage/> : <Redirect to="/login"/>
-      }}
-    />
+      redirect="/login"
+      isAuth={isAuth}
+    >
+      <PointEditPage/>
+    </PrivateRoute>
   </Switch>
 }
 

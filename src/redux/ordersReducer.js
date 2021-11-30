@@ -1,9 +1,7 @@
-import {ordersAPI} from "../api/restapi";
-import {ordersActions} from "./actions/ordersActions";
-
 const initialState = {
   orders: [],
-  totalCount: null
+  totalCount: null,
+  orderStatus: []
 };
 
 const ordersReducer = (state = initialState, action) => {
@@ -20,17 +18,15 @@ const ordersReducer = (state = initialState, action) => {
         totalCount: action.payload
       }
     }
+    case "ORDERS/SET_ORDER_STATUS": {
+      return {
+        ...state,
+        orderStatus: action.payload
+      }
+    }
     default:
       return state;
   }
-}
-
-export const getOrders = (page) => async (dispatch) => {
-  const response = await ordersAPI.getOrders(page)
-  if (!initialState.totalCount) {
-    dispatch(ordersActions.setTotalOrdersCount(response.data.count))
-  }
-  dispatch(ordersActions.setOrdersPortion(response.data.data))
 }
 
 export default ordersReducer;

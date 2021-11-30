@@ -46,14 +46,6 @@ const pointsReducer = (state = initialState, action) => {
   }
 }
 
-export const getPoints = () => async (dispatch) => {
-  const response = await pointsAPI.getPoints()
-  if (!initialState.totalCount) {
-    dispatch(pointsActions.setTotalPointsCount(response.data.count))
-  }
-  dispatch(pointsActions.setPointsPortion(response.data.data))
-}
-
 export const setPointToEdit = (point) => async (dispatch) => {
   dispatch(pointsActions.setPointToEdit(point))
 }
