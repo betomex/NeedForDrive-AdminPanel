@@ -25,7 +25,7 @@ export const CarsTable = () => {
 
   useEffect(async () => {
     setLoading(true)
-    await dispatch(getCars(currentPage - 1,null, sorters))
+    await dispatch(getCars(currentPage - 1,10, sorters))
     setLoading(false)
   }, [currentPage, sorters])
 
@@ -39,13 +39,21 @@ export const CarsTable = () => {
         >
           <Collapse.Panel key={1} header="Сортировки">
             <SorterForm
-              fields={["categoryId", "name", "priceMin"]}
+              fields={[
+                {idName: "categoryId", name: "Категория"},
+                {idName: "name", name: "Наименование"},
+                {idName: "priceMin", name: "Цена"}
+              ]}
               onSorterFormFinish={onSorterFormFinish}
             />
           </Collapse.Panel>
         </Collapse>
         : <SorterForm
-          fields={["categoryId", "name", "priceMin"]}
+          fields={[
+            {idName: "categoryId", name: "Категория"},
+            {idName: "name", name: "Наименование"},
+            {idName: "priceMin", name: "Цена"}
+          ]}
           onSorterFormFinish={onSorterFormFinish}
         />
       }

@@ -38,13 +38,17 @@ export const CitiesTable = () => {
         >
           <Collapse.Panel key={1} header="Сортировки">
             <SorterForm
-              fields={["name"]}
+              fields={[
+                {idName: "name", name: "Наименование"}
+              ]}
               onSorterFormFinish={onSorterFormFinish}
             />
           </Collapse.Panel>
         </Collapse>
         : <SorterForm
-          fields={["name"]}
+          fields={[
+            {idName: "name", name: "Наименование"}
+          ]}
           onSorterFormFinish={onSorterFormFinish}
         />
       }

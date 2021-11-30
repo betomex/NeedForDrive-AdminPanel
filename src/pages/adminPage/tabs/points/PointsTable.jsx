@@ -38,13 +38,21 @@ export const PointsTable = () => {
         >
           <Collapse.Panel key={1} header="Сортировки">
             <SorterForm
-              fields={["cityId", "address", "name"]}
+              fields={[
+                {idName: "cityId", name: "Город"},
+                {idName: "address", name: "Адрес"},
+                {idName: "name", name: "Описание"}
+              ]}
               onSorterFormFinish={onSorterFormFinish}
             />
           </Collapse.Panel>
         </Collapse>
         : <SorterForm
-          fields={["cityId", "address", "name"]}
+          fields={[
+            {idName: "cityId", name: "Город"},
+            {idName: "address", name: "Адрес"},
+            {idName: "name", name: "Описание"}
+          ]}
           onSorterFormFinish={onSorterFormFinish}
         />
       }

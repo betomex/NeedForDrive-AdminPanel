@@ -20,9 +20,9 @@ export const SorterForm = (props) => {
       >
         {fields.map(field =>
           <Select.Option
-            key={field}
-            value={field}
-          >{field}</Select.Option>
+            key={field.idName}
+            value={field.idName}
+          >{field.name}</Select.Option>
         )}
       </Select>
     </Form.Item>

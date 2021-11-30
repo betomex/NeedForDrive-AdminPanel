@@ -12,10 +12,8 @@ const instance = axios.create({
 
 const sortParams = (sorters) => {
   let sorterParams = ``
-  if (sorters) {
-    if (sorters.field && sorters.sortDirection) {
-      sorterParams += `?sort[${sorters.field}]=${sorters.sortDirection}`
-    }
+  if (sorters && sorters.field && sorters.sortDirection) {
+    sorterParams += `?sort[${sorters.field}]=${sorters.sortDirection}`
   }
   return sorterParams
 }
