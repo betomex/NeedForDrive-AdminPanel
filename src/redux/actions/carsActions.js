@@ -15,3 +15,43 @@ export const getCars = (page, limit, sorters = null) => async (dispatch) => {
   dispatch(carsActions.setTotalCarsCount(response.data.count))
   dispatch(carsActions.setCarsPortion(response.data.data))
 }
+
+export const getCategories = () => async (dispatch) => {
+  const data = await carsAPI.getCategories()
+  dispatch(carsActions.setCategories(data))
+}
+
+export const setCarToEdit = (car) => async (dispatch) => {
+  dispatch(carsActions.setCarToEdit(car))
+}
+
+export const setCarAction = (action) => async (dispatch) => {
+  dispatch(carsActions.setCarSuccess(false))
+  dispatch(carsActions.setCarAction(action))
+}
+
+export const putCar = (carId, data) => async (dispatch) => {
+  const response = await carsAPI.putCar(carId, data)
+  if (response.status === 200) {
+    dispatch(carsActions.setCarSuccess(true))
+  } else {
+    dispatch(carsActions.setCarSuccess(false))
+  }
+}
+
+export const postCar = (data) => async (dispatch) => {
+  const response = await carsAPI.postCar(data)
+  if (response.status === 200) {
+    dispatch(carsActions.setCarSuccess(true))
+  } else {
+    dispatch(carsActions.setCarSuccess(false))
+  }
+}
+
+export const deleteCar = (carId) => async () => {
+  await carsAPI.deleteCar(carId)
+}
+
+export const setCurrentPage = (page) => async (dispatch) => {
+  dispatch(carsActions.setCurrentPage(page))
+}

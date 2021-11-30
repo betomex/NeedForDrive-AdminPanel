@@ -13,3 +13,30 @@ export const getCities = (sorters = null) => async (dispatch) => {
   dispatch(citiesActions.setTotalCitiesCount(response.data.count))
   dispatch(citiesActions.setCitiesPortion(response.data.data))
 }
+
+export const setCityToEdit = (city) => async (dispatch) => {
+  dispatch(citiesActions.setCityToEdit(city))
+}
+
+export const setCityAction = (action) => async (dispatch) => {
+  dispatch(citiesActions.setCitySuccess(false))
+  dispatch(citiesActions.setCityAction(action))
+}
+
+export const putCity = (cityId, data) => async (dispatch) => {
+  const response = await citiesAPI.putCity(cityId, data)
+  if (response.status === 200) {
+    dispatch(citiesActions.setCitySuccess(true))
+  } else {
+    dispatch(citiesActions.setCitySuccess(false))
+  }
+}
+
+export const postCity = (data) => async (dispatch) => {
+  const response = await citiesAPI.postCity(data)
+  if (response.status === 200) {
+    dispatch(citiesActions.setCitySuccess(true))
+  } else {
+    dispatch(citiesActions.setCitySuccess(false))
+  }
+}

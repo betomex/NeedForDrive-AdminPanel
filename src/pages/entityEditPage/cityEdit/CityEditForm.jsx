@@ -3,7 +3,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Form, Input, message} from "antd";
 import {Link} from "react-router-dom";
-import {postCity, putCity} from "../../../redux/citiesReducer";
+import {postCity, putCity} from "../../../redux/actions/citiesActions";
 
 export const CityEditForm = (props) => {
   const {cityToEdit} = props

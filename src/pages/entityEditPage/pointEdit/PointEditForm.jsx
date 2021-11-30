@@ -3,8 +3,8 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AutoComplete, Button, Form, Input, message} from "antd";
 import {Link} from "react-router-dom";
-import {getCities} from "../../../redux/citiesReducer";
-import {postPoint, putPoint} from "../../../redux/pointsReducer";
+import {postPoint, putPoint} from "../../../redux/actions/pointsActions";
+import {getCities} from "../../../redux/actions/citiesActions";
 
 export const PointEditForm = (props) => {
   const {pointToEdit} = props

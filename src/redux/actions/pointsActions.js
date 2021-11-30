@@ -13,3 +13,30 @@ export const getPoints = (sorters = null) => async (dispatch) => {
   dispatch(pointsActions.setTotalPointsCount(response.data.count))
   dispatch(pointsActions.setPointsPortion(response.data.data))
 }
+
+export const setPointToEdit = (point) => async (dispatch) => {
+  dispatch(pointsActions.setPointToEdit(point))
+}
+
+export const setPointAction = (action) => async (dispatch) => {
+  dispatch(pointsActions.setPointSuccess(false))
+  dispatch(pointsActions.setPointAction(action))
+}
+
+export const putPoint = (pointId, data) => async (dispatch) => {
+  const response = await pointsAPI.putPoint(pointId, data)
+  if (response.status === 200) {
+    dispatch(pointsActions.setPointSuccess(true))
+  } else {
+    dispatch(pointsActions.setPointSuccess(false))
+  }
+}
+
+export const postPoint = (data) => async (dispatch) => {
+  const response = await pointsAPI.postPoint(data)
+  if (response.status === 200) {
+    dispatch(pointsActions.setPointSuccess(true))
+  } else {
+    dispatch(pointsActions.setPointSuccess(false))
+  }
+}

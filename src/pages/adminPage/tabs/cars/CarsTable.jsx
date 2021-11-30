@@ -4,9 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {Button, Collapse, Layout, Table} from "antd";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 import {Link} from "react-router-dom";
-import {setCarAction, setCarToEdit, setCurrentPage} from "../../../../redux/carsReducer";
 import {carsColumns} from "../../tablesColumns";
-import {getCars} from "../../../../redux/actions/carsActions";
+import {getCars, setCarAction, setCarToEdit, setCurrentPage} from "../../../../redux/actions/carsActions";
 import {SorterForm} from "../../components/SorterForm";
 
 export const CarsTable = () => {
@@ -70,7 +69,7 @@ export const CarsTable = () => {
       </Link>
       <div
         className="carsTable"
-        style={collapsedItems.length ? {height: "55%"} : {height: "90%"}}
+        style={collapsedItems.length ? {height: "55%"} : {height: "85%"}}
       >
         <Table
           bordered

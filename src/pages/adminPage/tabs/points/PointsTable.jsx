@@ -3,10 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {Button, Collapse, Layout, Table} from "antd";
 import {Link} from "react-router-dom";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
-import {setPointAction, setPointToEdit} from "../../../../redux/pointsReducer";
 import {pointsColumns} from "../../tablesColumns";
 import './PointsTable.css'
-import {getPoints} from "../../../../redux/actions/pointsActions";
+import {getPoints, setPointAction, setPointToEdit} from "../../../../redux/actions/pointsActions";
 import {SorterForm} from "../../components/SorterForm";
 
 export const PointsTable = () => {
@@ -70,7 +69,7 @@ export const PointsTable = () => {
       </Link>
       <div
         className="pointsTable"
-        style={collapsedItems.length ? {height: "55%"} : {height: "90%"}}
+        style={collapsedItems.length ? {height: "55%"} : {height: "85%"}}
       >
         <Table
           bordered

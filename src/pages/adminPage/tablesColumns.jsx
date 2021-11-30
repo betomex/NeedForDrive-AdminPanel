@@ -3,9 +3,9 @@ import {Button, Image, Modal, Space} from "antd";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {ExclamationCircleOutlined} from "@ant-design/icons";
-import {deleteCar, getCars, setCarAction, setCarToEdit, setCurrentPage} from "../../redux/carsReducer";
-import {setCityAction, setCityToEdit} from "../../redux/citiesReducer";
-import {setPointAction, setPointToEdit} from "../../redux/pointsReducer";
+import {deleteCar, getCars, setCarAction, setCarToEdit, setCurrentPage} from "../../redux/actions/carsActions";
+import {setCityAction, setCityToEdit} from "../../redux/actions/citiesActions";
+import {setPointAction, setPointToEdit} from "../../redux/actions/pointsActions";
 
 export const carsColumns = [
   {

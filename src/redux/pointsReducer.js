@@ -1,6 +1,3 @@
-import {pointsAPI} from "../api/restapi";
-import {pointsActions} from "./actions/pointsActions";
-
 const initialState = {
   points: [],
   totalCount: null,
@@ -43,33 +40,6 @@ const pointsReducer = (state = initialState, action) => {
     }
     default:
       return state;
-  }
-}
-
-export const setPointToEdit = (point) => async (dispatch) => {
-  dispatch(pointsActions.setPointToEdit(point))
-}
-
-export const setPointAction = (action) => async (dispatch) => {
-  dispatch(pointsActions.setPointSuccess(false))
-  dispatch(pointsActions.setPointAction(action))
-}
-
-export const putPoint = (pointId, data) => async (dispatch) => {
-  const response = await pointsAPI.putPoint(pointId, data)
-  if (response.status === 200) {
-    dispatch(pointsActions.setPointSuccess(true))
-  } else {
-    dispatch(pointsActions.setPointSuccess(false))
-  }
-}
-
-export const postPoint = (data) => async (dispatch) => {
-  const response = await pointsAPI.postPoint(data)
-  if (response.status === 200) {
-    dispatch(pointsActions.setPointSuccess(true))
-  } else {
-    dispatch(pointsActions.setPointSuccess(false))
   }
 }
 

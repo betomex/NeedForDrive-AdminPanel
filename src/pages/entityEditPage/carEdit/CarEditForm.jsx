@@ -4,7 +4,7 @@ import {AutoComplete, Button, Checkbox, Form, Input, message} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getCategories, postCar, putCar} from "../../../redux/carsReducer";
+import {getCategories, postCar, putCar} from "../../../redux/actions/carsActions";
 
 export const CarEditForm = (props) => {
   const {image, carToEdit} = props

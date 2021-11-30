@@ -3,10 +3,9 @@ import {Button, Collapse, Layout, Table} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
-import {setCityAction, setCityToEdit} from "../../../../redux/citiesReducer";
 import {citiesColumns} from "../../tablesColumns";
 import './CitiesTable.css'
-import {getCities} from "../../../../redux/actions/citiesActions";
+import {getCities, setCityAction, setCityToEdit} from "../../../../redux/actions/citiesActions";
 import {SorterForm} from "../../components/SorterForm";
 
 export const CitiesTable = () => {
@@ -66,7 +65,7 @@ export const CitiesTable = () => {
       </Link>
       <div
         className="citiesTable"
-        style={collapsedItems.length ? {height: "60%"} : {height: "90%"}}
+        style={collapsedItems.length ? {height: "60%"} : {height: "85%"}}
       >
         <Table
           bordered

@@ -86,6 +86,12 @@
     }
 }
 
+@media (max-width: 768px) {
+    .editingContainer {
+        height: 100%;
+    }
+}
+
 @media (max-width: 320px) {
     .editingTwo {
         width: 85%;
