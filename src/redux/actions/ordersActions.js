@@ -4,7 +4,6 @@ export const ordersActions = {
   setOrdersPortion: (data) => ({type: "ORDERS/SET_ORDERS_PORTION", payload: data}),
   setTotalOrdersCount: (count) => ({type: "ORDERS/ORDERS_TOTAL_COUNT", payload: count}),
   getOrderStatus: (status) => ({type: "ORDERS/SET_ORDER_STATUS", payload: status}),
-  getCities: (cities) => ({type: "ORDERS/SET_CITIES", payload: cities}),
 }
 
 export const getOrders = (page = 1, limit = 20, filters = null) => async (dispatch) => {
@@ -16,9 +15,4 @@ export const getOrders = (page = 1, limit = 20, filters = null) => async (dispat
 export const getOrderStatus = () => async (dispatch) => {
   const data = await ordersAPI.getOrderStatus()
   dispatch(ordersActions.getOrderStatus(data))
-}
-
-export const getCities = () => async (dispatch) => {
-  const data = await ordersAPI.getCities()
-  dispatch(ordersActions.getCities(data))
 }

@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import {Drawer, Layout, Menu} from 'antd';
-import {EditOutlined} from "@ant-design/icons";
+import {CarOutlined, EditOutlined, EnvironmentOutlined, HomeOutlined} from "@ant-design/icons";
 import './AdminPage.css'
 import {OrdersList} from "./tabs/orders/OrdersList";
 import {AdminPageHeader} from "./components/AdminPageHeader";
+import {CarsTable} from "./tabs/cars/CarsTable";
+import {CitiesTable} from "./tabs/cities/CitiesTable";
+import {PointsTable} from "./tabs/points/PointsTable";
 
 export const AdminPage = () => {
   const [currentMenuItem, setCurrentMenuItem] = useState(1)
@@ -38,13 +41,28 @@ export const AdminPage = () => {
             className="sideMenuItem"
             icon={<EditOutlined/>}
           >Список заказов</Menu.Item>
-          <Menu.Item key="2" className="sideMenuItem">option2</Menu.Item>
-          <Menu.Item key="3" className="sideMenuItem">option3</Menu.Item>
-          <Menu.Item key="4" className="sideMenuItem">option4</Menu.Item>
+          <Menu.Item
+            key="2"
+            className="sideMenuItem"
+            icon={<CarOutlined/>}
+          >Таблица авто</Menu.Item>
+          <Menu.Item
+            key="3"
+            className="sideMenuItem"
+            icon={<EnvironmentOutlined/>}
+          >Таблица городов</Menu.Item>
+          <Menu.Item
+            key="4"
+            className="sideMenuItem"
+            icon={<HomeOutlined/>}
+          >Таблица пунктов</Menu.Item>
         </Menu>
       </Drawer>
       <Layout className="adminPageContainer">
         {currentMenuItem === 1 && <OrdersList/>}
+        {currentMenuItem === 2 && <CarsTable/>}
+        {currentMenuItem === 3 && <CitiesTable/>}
+        {currentMenuItem === 4 && <PointsTable/>}
       </Layout>
     </Layout>
   </Layout>

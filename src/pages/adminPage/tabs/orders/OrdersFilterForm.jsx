@@ -3,12 +3,13 @@ import React, {useEffect} from "react";
 import {Button, Form, Select} from "antd";
 import './OrdersFilterForm.css'
 import {useDispatch, useSelector} from "react-redux";
-import {getCities, getOrderStatus} from "../../../../redux/actions/ordersActions";
+import {getOrderStatus} from "../../../../redux/actions/ordersActions";
+import {getCities} from "../../../../redux/actions/citiesActions";
 
 export const OrdersFilterForm = (props) => {
   const {onFilterFormFinish} = props
-  const ordersData = useSelector(state => state.orders)
-  const {orderStatus, cities} = ordersData
+  const orderStatus = useSelector(state => state.orders.orderStatus)
+  const cities = useSelector(state => state.cities.cities)
 
   const dispatch = useDispatch()
 

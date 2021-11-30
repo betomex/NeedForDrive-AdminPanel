@@ -1,11 +1,3 @@
-/*.ant-select .ant-select-selector {
-    display: none;
-}
-
-.ant-select-arrow {
-    display: none;
-}*/
-
 .pageTitle {
     font-style: normal;
     font-weight: normal;
@@ -25,15 +17,8 @@
 }
 
 .ordersList {
-    height: 82%;
     overflow-y: auto;
     margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-    .ordersList {
-        height: 72%;
-    }
 }
 
 @media (max-width: 425px) {
@@ -42,14 +27,5 @@
     }
     .ordersListContent {
         padding: 15px;
-    }
-    .ordersList {
-        height: 62%;
-    }
-}
-
-@media (max-width: 375px) {
-    .ordersList {
-        height: 55%;
     }
 }

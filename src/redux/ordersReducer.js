@@ -1,8 +1,7 @@
 const initialState = {
   orders: [],
   totalCount: null,
-  orderStatus: [],
-  cities: []
+  orderStatus: []
 };
 
 const ordersReducer = (state = initialState, action) => {
@@ -23,12 +22,6 @@ const ordersReducer = (state = initialState, action) => {
       return {
         ...state,
         orderStatus: action.payload
-      }
-    }
-    case "ORDERS/SET_CITIES": {
-      return {
-        ...state,
-        cities: action.payload
       }
     }
     default:
