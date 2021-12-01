@@ -16,13 +16,7 @@ export const PointEditForm = (props) => {
   const dispatch = useDispatch()
 
   const onFormSubmitHandle = (values) => {
-    let cityId = null
-    for (let i = 0; i < cities.length; i += 1) {
-      if (cities[i].name === values.cityId) {
-        cityId = cities[i].id
-        break
-      }
-    }
+    const cityId = cities.find(city => city.name === values.cityId).id
 
     switch (pointAction) {
       case "create": {

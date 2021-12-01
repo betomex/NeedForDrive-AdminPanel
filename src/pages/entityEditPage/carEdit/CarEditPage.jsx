@@ -17,7 +17,7 @@ export const CarEditPage = () => {
       <div className="editingContent editingOne">
         <img
           className="cardImage"
-          src={carToEdit?.thumbnail?.path || blankCar}
+          src={carToEdit?.thumbnail?.path || image?.path || blankCar}
           alt="carImage"
         />
         <p className="carName">{carToEdit?.name || "Марка авто"}</p>

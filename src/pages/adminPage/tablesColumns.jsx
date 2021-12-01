@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Image, Modal, Space} from "antd";
 import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {ExclamationCircleOutlined} from "@ant-design/icons";
 import {deleteCar, getCars, setCarAction, setCarToEdit, setCurrentPage} from "../../redux/actions/carsActions";
 import {setCityAction, setCityToEdit} from "../../redux/actions/citiesActions";
@@ -55,17 +55,15 @@ export const carsColumns = [
     key: 'actions',
     render: (car) => {
       const dispatch = useDispatch()
-      const currentPage = useSelector(state => state.cars.currentPage)
 
       const showConfirm = () => {
         Modal.confirm({
           title: 'Точно удалить машину?',
           icon: <ExclamationCircleOutlined/>,
           onOk() {
-            console.log(currentPage)
             dispatch(deleteCar(car.id))
             dispatch(setCurrentPage(1))
-            dispatch(getCars(1))
+            dispatch(getCars(0))
           }
         });
       }

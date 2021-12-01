@@ -21,13 +21,7 @@ export const CarEditForm = (props) => {
   const addColor = useRef()
 
   const onFormSubmitHandle = async (values) => {
-    let categoryId = null
-    for (let i = 0; i < categories.length; i += 1) {
-      if (categories[i].name === values.categoryId) {
-        categoryId = categories[i].id
-        break
-      }
-    }
+    const categoryId = categories.find(category => category.name === values.categoryId).id
 
     const formData = {
       priceMin: Number(values.priceMin),
@@ -145,18 +139,25 @@ export const CarEditForm = (props) => {
         {() => (
           <>
             <Form.Item>
-              <Input placeholder="Добавьте цвет" allowClear ref={addColor} className="carColorInput"/>
+              <Input
+                placeholder="Добавьте цвет"
+                allowClear
+                ref={addColor}
+                className="carColorInput"
+              />
             </Form.Item>
             <Form.Item>
               <Button type="dashed" className="carColorAddButton" onClick={() => {
-                setColors([
-                  ...colors,
-                  {
-                    id: colors.length,
-                    value: addColor.current.state.value
-                  }
-                ])
-                addColor.current.state.value = ""
+                if (addColor.current.state.value) {
+                  setColors([
+                    ...colors,
+                    {
+                      id: colors.length,
+                      value: addColor.current.state.value
+                    }
+                  ])
+                  addColor.current.state.value = ""
+                }
               }} block>
                 <PlusOutlined/>
               </Button>
