@@ -2,18 +2,22 @@ import React, {useState} from "react";
 import {Drawer, Layout, Menu} from 'antd';
 import {CarOutlined, EditOutlined, EnvironmentOutlined, HomeOutlined} from "@ant-design/icons";
 import './AdminPage.css'
+import {useDispatch, useSelector} from "react-redux";
 import {OrdersList} from "./tabs/orders/OrdersList";
 import {AdminPageHeader} from "./components/AdminPageHeader";
 import {CarsTable} from "./tabs/cars/CarsTable";
 import {CitiesTable} from "./tabs/cities/CitiesTable";
 import {PointsTable} from "./tabs/points/PointsTable";
+import {setAdminCurrentPage} from "../../redux/actions/utilsActions";
 
 export const AdminPage = () => {
-  const [currentMenuItem, setCurrentMenuItem] = useState(1)
   const [visible, setVisible] = useState(false)
+  
+  const currentMenuItem = useSelector(state => state.utils.adminCurrentPage)
+  const dispatch = useDispatch()
 
   const onSelectHandler = (e) => {
-    setCurrentMenuItem(Number(e.key))
+    dispatch(setAdminCurrentPage(Number(e.key)))
     setVisible(false)
   }
 

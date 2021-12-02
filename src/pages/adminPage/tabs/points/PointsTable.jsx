@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Collapse, Layout, Table} from "antd";
+import {Button, Collapse, Layout, Table} from "antd";
+import {Link} from "react-router-dom";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 import {pointsColumns} from "../../tablesColumns";
 import './PointsTable.css'
-import {getPoints} from "../../../../redux/actions/pointsActions";
+import {getPoints, setPointAction, setPointToEdit} from "../../../../redux/actions/pointsActions";
 import {SorterForm} from "../../components/SorterForm";
 
 export const PointsTable = () => {
@@ -56,9 +57,19 @@ export const PointsTable = () => {
           onSorterFormFinish={onSorterFormFinish}
         />
       }
+      <Link to="point-edit">
+        <Button
+          type="primary"
+          className="addEntityButton"
+          onClick={() => {
+            dispatch(setPointAction("create"))
+            dispatch(setPointToEdit(null))
+          }}
+        >Добавить пункт</Button>
+      </Link>
       <div
         className="pointsTable"
-        style={collapsedItems.length ? {height: "55%"} : {height: "90%"}}
+        style={collapsedItems.length ? {height: "55%"} : {height: "85%"}}
       >
         <Table
           bordered

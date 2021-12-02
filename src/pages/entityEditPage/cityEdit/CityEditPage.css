@@ -1,0 +1,25 @@
+.cityEditContent {
+    width: 50%;
+}
+
+.cityFormButtons {
+    margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+    .cityEditContent {
+        width: 65%;
+    }
+}
+
+@media (max-width: 768px) {
+    .cityEditContent {
+        width: 80%;
+    }
+}
+
+@media (max-width: 425px) {
+    .cityEditContent {
+        width: 90%;
+    }
+}

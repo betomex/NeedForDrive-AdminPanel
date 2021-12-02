@@ -5,13 +5,15 @@ import ordersReducer from "./ordersReducer";
 import carsReducer from "./carsReducer";
 import citiesReducer from "./citiesReducer";
 import pointsReducer from "./pointsReducer";
+import utilsReducer from "./utilsReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   orders: ordersReducer,
   cars: carsReducer,
   cities: citiesReducer,
-  points: pointsReducer
+  points: pointsReducer,
+  utils: utilsReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleWare));

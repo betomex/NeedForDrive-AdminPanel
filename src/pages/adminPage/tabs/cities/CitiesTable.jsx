@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {Collapse, Layout, Table} from "antd";
+import {Button, Collapse, Layout, Table} from "antd";
 import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
 import {citiesColumns} from "../../tablesColumns";
 import './CitiesTable.css'
-import {getCities} from "../../../../redux/actions/citiesActions";
+import {getCities, setCityAction, setCityToEdit} from "../../../../redux/actions/citiesActions";
 import {SorterForm} from "../../components/SorterForm";
 
 export const CitiesTable = () => {
@@ -52,9 +53,19 @@ export const CitiesTable = () => {
           onSorterFormFinish={onSorterFormFinish}
         />
       }
+      <Link to="city-edit">
+        <Button
+          type="primary"
+          className="addEntityButton"
+          onClick={() => {
+            dispatch(setCityAction("create"))
+            dispatch(setCityToEdit(null))
+          }}
+        >Добавить город</Button>
+      </Link>
       <div
         className="citiesTable"
-        style={collapsedItems.length ? {height: "60%"} : {height: "90%"}}
+        style={collapsedItems.length ? {height: "60%"} : {height: "85%"}}
       >
         <Table
           bordered

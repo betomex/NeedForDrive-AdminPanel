@@ -1,5 +1,11 @@
 import React from "react";
-import {Image} from "antd";
+import {Button, Image, Modal, Space} from "antd";
+import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {ExclamationCircleOutlined} from "@ant-design/icons";
+import {deleteCar, getCars, setCarAction, setCarToEdit, setCurrentPage} from "../../redux/actions/carsActions";
+import {setCityAction, setCityToEdit} from "../../redux/actions/citiesActions";
+import {setPointAction, setPointToEdit} from "../../redux/actions/pointsActions";
 
 export const carsColumns = [
   {
@@ -44,6 +50,35 @@ export const carsColumns = [
       />
     )
   },
+  {
+    title: 'Действия',
+    key: 'actions',
+    render: (car) => {
+      const dispatch = useDispatch()
+
+      const showConfirm = () => {
+        Modal.confirm({
+          title: 'Точно удалить машину?',
+          icon: <ExclamationCircleOutlined/>,
+          onOk() {
+            dispatch(deleteCar(car.id))
+            dispatch(setCurrentPage(1))
+            dispatch(getCars(0))
+          }
+        });
+      }
+
+      return <Space>
+        <Link to="car-edit" onClick={() => {
+          dispatch(setCarAction("update"))
+          dispatch(setCarToEdit(car))
+        }}>Изменить</Link>
+        <Button type="link" onClick={() => {
+          dispatch(showConfirm)
+        }}>Удалить</Button>
+      </Space>
+    }
+  },
 ];
 
 export const citiesColumns = [
@@ -51,7 +86,19 @@ export const citiesColumns = [
     title: 'Наименование',
     dataIndex: 'name',
     key: 'name',
-  }
+  },
+  {
+    title: 'Действия',
+    key: 'actions',
+    render: (city) => {
+      const dispatch = useDispatch()
+
+      return <Link to="city-edit" onClick={() => {
+        dispatch(setCityAction("update"))
+        dispatch(setCityToEdit(city))
+      }}>Изменить</Link>
+    }
+  },
 ];
 
 export const pointsColumns = [
@@ -70,5 +117,17 @@ export const pointsColumns = [
     title: 'Описание',
     dataIndex: 'name',
     key: 'name',
-  }
+  },
+  {
+    title: 'Действия',
+    key: 'actions',
+    render: (point) => {
+      const dispatch = useDispatch()
+
+      return <Link to="point-edit" onClick={() => {
+        dispatch(setPointAction("update"))
+        dispatch(setPointToEdit(point))
+      }}>Изменить</Link>
+    }
+  },
 ];

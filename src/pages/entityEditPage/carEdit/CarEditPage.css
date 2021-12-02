@@ -1,0 +1,102 @@
+.ant-form-item {
+    margin-bottom: 10px;
+}
+
+.editingContainer {
+    height: 100vh;
+}
+
+.editingTitle {
+    margin-left: 24px;
+    margin-top: 10px;
+    font-size: 32px;
+}
+
+.editingContent {
+    margin: 0 24px 15px 24px;
+    min-height: 280px;
+    padding: 24px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(90, 97, 105, 0.12);
+    border-radius: 9px;
+}
+
+.editingOne {
+    width: 250px;
+}
+
+.editingTwo {
+    width: 700px;
+}
+
+.cardImage {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.carName {
+    font-size: 24.5px;
+    letter-spacing: -0.6125px;
+    color: #3D5170;
+    margin: 0;
+}
+
+.carCategory {
+    font-size: 12.5px;
+    letter-spacing: -0.3125px;
+    color: #818EA3;
+}
+
+.EntityFormTitle {
+    font-weight: 500;
+    font-size: 17.5px;
+    letter-spacing: -0.4375px;
+    color: #3D5170;
+}
+
+.carColorItem div:last-child {
+    display: flex
+}
+
+.colorsList label:first-child {
+    margin-left: 8px;
+    margin-right: 16px;
+}
+
+.carColorInput {
+    width: 200px;
+    margin-right: 10px;
+}
+
+.carColorAddButton {
+    width: 50px;
+}
+
+.formButtons {
+    display: flex;
+}
+
+.cancelButton {
+    margin-left: 10px;
+}
+
+@media (max-width: 1024px) {
+    .editingTwo {
+        width: 650px;
+    }
+}
+
+@media (max-width: 768px) {
+    .editingContainer {
+        height: 100%;
+    }
+}
+
+@media (max-width: 320px) {
+    .editingTwo {
+        width: 85%;
+    }
+    .carColorInput {
+        width: 165px;
+    }
+}

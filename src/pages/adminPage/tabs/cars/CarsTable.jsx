@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from "react";
 import './CarsTable.css'
 import {useDispatch, useSelector} from "react-redux";
-import {Collapse, Layout, Table} from "antd";
+import {Button, Collapse, Layout, Table} from "antd";
 import useBreakpoint from "antd/es/grid/hooks/useBreakpoint";
+import {Link} from "react-router-dom";
 import {carsColumns} from "../../tablesColumns";
-import {getCars} from "../../../../redux/actions/carsActions";
+import {getCars, setCarAction, setCarToEdit, setCurrentPage} from "../../../../redux/actions/carsActions";
 import {SorterForm} from "../../components/SorterForm";
 
 export const CarsTable = () => {
   const [loading, setLoading] = useState(true)
-  const [currentPage, setCurrentPage] = useState(1)
   const [collapsedItems, setCollapsedItems] = useState([])
   const [sorters, setSorters] = useState(null)
 
   const carsData = useSelector(state => state.cars)
-  const {cars, totalCount} = carsData
+  const {cars, totalCount, currentPage} = carsData
 
   const dispatch = useDispatch()
   const sizeOfPage = useBreakpoint()
@@ -25,7 +25,7 @@ export const CarsTable = () => {
 
   useEffect(async () => {
     setLoading(true)
-    await dispatch(getCars(currentPage - 1,10, sorters))
+    await dispatch(getCars(currentPage - 1, 10, sorters))
     setLoading(false)
   }, [currentPage, sorters])
 
@@ -57,9 +57,19 @@ export const CarsTable = () => {
           onSorterFormFinish={onSorterFormFinish}
         />
       }
+      <Link to="car-edit">
+        <Button
+          type="primary"
+          className="addEntityButton"
+          onClick={() => {
+            dispatch(setCarAction("create"))
+            dispatch(setCarToEdit(null))
+          }}
+        >Добавить авто</Button>
+      </Link>
       <div
         className="carsTable"
-        style={collapsedItems.length ? {height: "55%"} : {height: "90%"}}
+        style={collapsedItems.length ? {height: "55%"} : {height: "85%"}}
       >
         <Table
           bordered
@@ -73,7 +83,7 @@ export const CarsTable = () => {
             current: currentPage,
             showTotal: (total, range) => `${range[0]}-${range[1]} из ${total} авто`,
             onChange: page => {
-              setCurrentPage(page)
+              dispatch(setCurrentPage(page))
             }
           }}
         />

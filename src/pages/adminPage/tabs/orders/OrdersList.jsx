@@ -73,6 +73,7 @@ export const OrdersList = () => {
         pageSize={20}
         current={currentPage}
         showQuickJumper
+        showSizeChanger={false}
         showTotal={total => `Всего ${total} заказов`}
         onChange={paginationHandler}
         simple={sizeOfPage.xs}

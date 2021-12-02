@@ -1,0 +1,31 @@
+.pointEditContent {
+    width: 50%;
+}
+
+.pointFormButtons {
+    margin-top: 20px;
+}
+
+@media (max-width: 1440px) {
+    .pointEditContent {
+        width: 55%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .pointEditContent {
+        width: 75%;
+    }
+}
+
+@media (max-width: 768px) {
+    .pointEditContent {
+        width: 95%;
+    }
+}
+
+@media (max-width: 425px) {
+    .pointEditContent {
+        width: 90%;
+    }
+}
