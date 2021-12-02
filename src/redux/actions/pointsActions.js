@@ -1,4 +1,5 @@
 import {pointsAPI} from "../../api/restapi";
+import {utilsActions} from "./utilsActions";
 
 export const pointsActions = {
   setPointsPortion: (data) => ({type: "POINTS/SET_POINTS_PORTION", payload: data}),
@@ -9,9 +10,13 @@ export const pointsActions = {
 }
 
 export const getPoints = (sorters = null) => async (dispatch) => {
-  const response = await pointsAPI.getPoints(sorters)
-  dispatch(pointsActions.setTotalPointsCount(response.data.count))
-  dispatch(pointsActions.setPointsPortion(response.data.data))
+  try {
+    const response = await pointsAPI.getPoints(sorters)
+    dispatch(pointsActions.setTotalPointsCount(response.data.count))
+    dispatch(pointsActions.setPointsPortion(response.data.data))
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
+  }
 }
 
 export const setPointToEdit = (point) => async (dispatch) => {
@@ -24,19 +29,27 @@ export const setPointAction = (action) => async (dispatch) => {
 }
 
 export const putPoint = (pointId, data) => async (dispatch) => {
-  const response = await pointsAPI.putPoint(pointId, data)
-  if (response.status === 200) {
-    dispatch(pointsActions.setPointSuccess(true))
-  } else {
-    dispatch(pointsActions.setPointSuccess(false))
+  try {
+    const response = await pointsAPI.putPoint(pointId, data)
+    if (response.status === 200) {
+      dispatch(pointsActions.setPointSuccess(true))
+    } else {
+      dispatch(pointsActions.setPointSuccess(false))
+    }
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
   }
 }
 
 export const postPoint = (data) => async (dispatch) => {
-  const response = await pointsAPI.postPoint(data)
-  if (response.status === 200) {
-    dispatch(pointsActions.setPointSuccess(true))
-  } else {
-    dispatch(pointsActions.setPointSuccess(false))
+  try {
+    const response = await pointsAPI.postPoint(data)
+    if (response.status === 200) {
+      dispatch(pointsActions.setPointSuccess(true))
+    } else {
+      dispatch(pointsActions.setPointSuccess(false))
+    }
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
   }
 }
