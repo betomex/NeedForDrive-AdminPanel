@@ -1,4 +1,5 @@
 import {carsAPI} from "../../api/restapi";
+import {utilsActions} from "./utilsActions";
 
 export const carsActions = {
   setCarsPortion: (data) => ({type: "CARS/SET_CARS_PORTION", payload: data}),
@@ -40,11 +41,15 @@ export const putCar = (carId, data) => async (dispatch) => {
 }
 
 export const postCar = (data) => async (dispatch) => {
-  const response = await carsAPI.postCar(data)
-  if (response.status === 200) {
-    dispatch(carsActions.setCarSuccess(true))
-  } else {
-    dispatch(carsActions.setCarSuccess(false))
+  try {
+    const response = await carsAPI.postCar(data)
+    if (response.status === 200) {
+      dispatch(carsActions.setCarSuccess(true))
+    } else {
+      dispatch(carsActions.setCarSuccess(false))
+    }
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
   }
 }
 

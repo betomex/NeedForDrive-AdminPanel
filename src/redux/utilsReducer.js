@@ -1,5 +1,6 @@
 const initialState = {
-  adminCurrentPage: 1
+  adminCurrentPage: 1,
+  error: null
 };
 
 const utilsReducer = (state = initialState, action) => {
@@ -8,6 +9,12 @@ const utilsReducer = (state = initialState, action) => {
       return {
         ...state,
         adminCurrentPage: action.payload
+      }
+    }
+    case "UTILS/SET_ERROR": {
+      return {
+        ...state,
+        error: action.payload
       }
     }
     default:

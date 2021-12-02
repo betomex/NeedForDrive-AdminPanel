@@ -8,9 +8,19 @@ import {PrivateRoute} from "./components/PrivateRoute";
 import {CarEditPage} from "./pages/entityEditPage/carEdit/CarEditPage";
 import {CityEditPage} from "./pages/entityEditPage/cityEdit/CityEditPage";
 import {PointEditPage} from "./pages/entityEditPage/pointEdit/PointEditPage";
+import {ErrorPage} from "./pages/errorPage/ErrorPage";
 
 const App = () => {
   const isAuth = useSelector(state => state.auth.isAuth)
+  const error = useSelector(state => state.utils.error)
+
+  if (error) {
+    return <ErrorPage
+      code={error.status}
+      msg={error.statusText ? error.statusText : "Произошла какая-то ошибка"}
+      submsg={error.data}
+    />
+  }
 
   return <Switch>
     <Route
@@ -58,6 +68,12 @@ const App = () => {
     >
       <PointEditPage/>
     </PrivateRoute>
+
+    <Route render={() => <ErrorPage
+      code={404}
+      msg="Страница не найдена"
+      submsg="Кнопка ниже приведёт вас куда надо"
+    />}/>
   </Switch>
 }
 
