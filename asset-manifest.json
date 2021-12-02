@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/NeedForDrive-AdminPanel/static/css/main.6e6bd0d2.chunk.css",
-    "main.js": "/NeedForDrive-AdminPanel/static/js/main.906d63ea.chunk.js",
-    "main.js.map": "/NeedForDrive-AdminPanel/static/js/main.906d63ea.chunk.js.map",
-    "runtime-main.js": "/NeedForDrive-AdminPanel/static/js/runtime-main.e885eb32.js",
-    "runtime-main.js.map": "/NeedForDrive-AdminPanel/static/js/runtime-main.e885eb32.js.map",
+    "main.css": "/NeedForDrive-AdminPanel/static/css/main.7e2ca75d.chunk.css",
+    "main.js": "/NeedForDrive-AdminPanel/static/js/main.bfdf9db5.chunk.js",
+    "main.js.map": "/NeedForDrive-AdminPanel/static/js/main.bfdf9db5.chunk.js.map",
+    "runtime-main.js": "/NeedForDrive-AdminPanel/static/js/runtime-main.876dfd66.js",
+    "runtime-main.js.map": "/NeedForDrive-AdminPanel/static/js/runtime-main.876dfd66.js.map",
     "static/css/2.a95be28f.chunk.css": "/NeedForDrive-AdminPanel/static/css/2.a95be28f.chunk.css",
-    "static/js/2.a420686a.chunk.js": "/NeedForDrive-AdminPanel/static/js/2.a420686a.chunk.js",
-    "static/js/2.a420686a.chunk.js.map": "/NeedForDrive-AdminPanel/static/js/2.a420686a.chunk.js.map",
-    "static/js/3.edd08d52.chunk.js": "/NeedForDrive-AdminPanel/static/js/3.edd08d52.chunk.js",
-    "static/js/3.edd08d52.chunk.js.map": "/NeedForDrive-AdminPanel/static/js/3.edd08d52.chunk.js.map",
+    "static/js/2.d5c950ae.chunk.js": "/NeedForDrive-AdminPanel/static/js/2.d5c950ae.chunk.js",
+    "static/js/2.d5c950ae.chunk.js.map": "/NeedForDrive-AdminPanel/static/js/2.d5c950ae.chunk.js.map",
+    "static/js/3.806b8627.chunk.js": "/NeedForDrive-AdminPanel/static/js/3.806b8627.chunk.js",
+    "static/js/3.806b8627.chunk.js.map": "/NeedForDrive-AdminPanel/static/js/3.806b8627.chunk.js.map",
     "index.html": "/NeedForDrive-AdminPanel/index.html",
     "static/css/2.a95be28f.chunk.css.map": "/NeedForDrive-AdminPanel/static/css/2.a95be28f.chunk.css.map",
-    "static/css/main.6e6bd0d2.chunk.css.map": "/NeedForDrive-AdminPanel/static/css/main.6e6bd0d2.chunk.css.map",
-    "static/js/2.a420686a.chunk.js.LICENSE.txt": "/NeedForDrive-AdminPanel/static/js/2.a420686a.chunk.js.LICENSE.txt",
+    "static/css/main.7e2ca75d.chunk.css.map": "/NeedForDrive-AdminPanel/static/css/main.7e2ca75d.chunk.css.map",
+    "static/js/2.d5c950ae.chunk.js.LICENSE.txt": "/NeedForDrive-AdminPanel/static/js/2.d5c950ae.chunk.js.LICENSE.txt",
     "static/media/Logo Icon.830257bf.svg": "/NeedForDrive-AdminPanel/static/media/Logo Icon.830257bf.svg",
     "static/media/index.css": "/NeedForDrive-AdminPanel/static/media/Roboto-Thin.1711b41f.ttf",
     "static/media/avatar.8845cada.png": "/NeedForDrive-AdminPanel/static/media/avatar.8845cada.png",
     "static/media/blankCar.55f3fbcd.png": "/NeedForDrive-AdminPanel/static/media/blankCar.55f3fbcd.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.e885eb32.js",
+    "static/js/runtime-main.876dfd66.js",
     "static/css/2.a95be28f.chunk.css",
-    "static/js/2.a420686a.chunk.js",
-    "static/css/main.6e6bd0d2.chunk.css",
-    "static/js/main.906d63ea.chunk.js"
+    "static/js/2.d5c950ae.chunk.js",
+    "static/css/main.7e2ca75d.chunk.css",
+    "static/js/main.bfdf9db5.chunk.js"
   ]
 }
