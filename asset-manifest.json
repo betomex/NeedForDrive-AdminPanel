@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/NeedForDrive-AdminPanel/static/css/main.7e2ca75d.chunk.css",
+    "main.css": "/NeedForDrive-AdminPanel/static/css/main.c9125bd8.chunk.css",
     "main.js": "/NeedForDrive-AdminPanel/static/js/main.bfdf9db5.chunk.js",
     "main.js.map": "/NeedForDrive-AdminPanel/static/js/main.bfdf9db5.chunk.js.map",
     "runtime-main.js": "/NeedForDrive-AdminPanel/static/js/runtime-main.876dfd66.js",
@@ -12,7 +12,7 @@
     "static/js/3.806b8627.chunk.js.map": "/NeedForDrive-AdminPanel/static/js/3.806b8627.chunk.js.map",
     "index.html": "/NeedForDrive-AdminPanel/index.html",
     "static/css/2.a95be28f.chunk.css.map": "/NeedForDrive-AdminPanel/static/css/2.a95be28f.chunk.css.map",
-    "static/css/main.7e2ca75d.chunk.css.map": "/NeedForDrive-AdminPanel/static/css/main.7e2ca75d.chunk.css.map",
+    "static/css/main.c9125bd8.chunk.css.map": "/NeedForDrive-AdminPanel/static/css/main.c9125bd8.chunk.css.map",
     "static/js/2.d5c950ae.chunk.js.LICENSE.txt": "/NeedForDrive-AdminPanel/static/js/2.d5c950ae.chunk.js.LICENSE.txt",
     "static/media/Logo Icon.830257bf.svg": "/NeedForDrive-AdminPanel/static/media/Logo Icon.830257bf.svg",
     "static/media/index.css": "/NeedForDrive-AdminPanel/static/media/Roboto-Thin.1711b41f.ttf",
@@ -23,7 +23,7 @@
     "static/js/runtime-main.876dfd66.js",
     "static/css/2.a95be28f.chunk.css",
     "static/js/2.d5c950ae.chunk.js",
-    "static/css/main.7e2ca75d.chunk.css",
+    "static/css/main.c9125bd8.chunk.css",
     "static/js/main.bfdf9db5.chunk.js"
   ]
 }
