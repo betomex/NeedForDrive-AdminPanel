@@ -18,6 +18,38 @@ const sortParams = (sorters) => {
   return sorterParams
 }
 
+const putRequest = (url, data) => {
+  return instance.put(url, data, {
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
+    }
+  })
+}
+
+const postRequest = (url, data) => {
+  return instance.post(url, data, {
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
+    }
+  })
+}
+
+const deleteRequest = (url) => {
+  return instance.delete(url, {
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
+    }
+  })
+}
+
+const getRequest = (url) => {
+  return instance.get(url, {
+    headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
+    }
+  })
+}
+
 export const ordersAPI = {
   getOrders(page, limit, filters) {
     let filterParams = ``
@@ -26,18 +58,10 @@ export const ordersAPI = {
       if (filters.orderStatus) filterParams += `&orderStatusId=${filters.orderStatus}`
       if (filters.dateFrom) filterParams += `&dateFrom%5B%24gt%5D=${filters.dateFrom}`
     }
-    return instance.get(`db/order?page=${page}&limit=${limit}${filterParams}`, {
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    })
+    return getRequest(`db/order?page=${page}&limit=${limit}${filterParams}`)
   },
   getOrderStatus() {
-    return instance.get(`db/orderStatus`, {
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    }).then(r => r.data.data)
+    return getRequest(`db/orderStatus`).then(r => r.data.data)
   }
 }
 
@@ -46,86 +70,42 @@ export const carsAPI = {
     const url = sorters
       ? `db/car${sortParams(sorters)}&page=${page}&limit=${limit}`
       : `db/car?page=${page}&limit=${limit}`
-    return instance.get(url, {
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    })
+    return getRequest(url)
   },
   getCategories() {
-    return instance.get(`db/category`, {
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    }).then(r => r.data.data)
+    return getRequest(`db/category`).then(r => r.data.data)
   },
   putCar(carId, data) {
-    return instance.put(`db/car/${carId}`, data, {
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    })
+    return putRequest(`db/car/${carId}`, data)
   },
   postCar(data) {
-    return instance.post(`db/car`, data, {
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    })
+    return postRequest(`db/car`, data)
   },
   deleteCar(carId) {
-    return instance.delete(`db/car/${carId}`, {
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    })
+    return deleteRequest(`db/car/${carId}`)
   }
 }
 
 export const citiesAPI = {
   getCities(sorters) {
-    return instance.get(`db/city${sortParams(sorters)}`, {
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    })
+    return getRequest(`db/city${sortParams(sorters)}`)
   },
   putCity(cityId, data) {
-    return instance.put(`db/city/${cityId}`, data,{
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    })
+    return putRequest(`db/city/${cityId}`, data)
   },
   postCity(data) {
-    return instance.post(`db/city`, data,{
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    })
+    return postRequest(`db/city`, data)
   }
 }
 
 export const pointsAPI = {
   getPoints(sorters) {
-    return instance.get(`db/point${sortParams(sorters)}`, {
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    })
+    return getRequest(`db/point${sortParams(sorters)}`)
   },
   putPoint(pointId, data) {
-    return instance.put(`db/point/${pointId}`, data,{
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    })
+    return putRequest(`db/point/${pointId}`, data)
   },
   postPoint(data) {
-    return instance.post(`db/point`, data,{
-      headers: {
-        "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
-      }
-    })
+    return postRequest(`db/point`, data)
   }
 }

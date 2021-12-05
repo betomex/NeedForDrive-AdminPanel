@@ -1,0 +1,44 @@
+.errorPageLayout {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.errorPageContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.errorCode {
+    font-weight: 500;
+    font-size: 75px;
+    letter-spacing: -5.76923px;
+    color: #CACEDB;
+    line-height: 100%;
+}
+
+.errorMessage {
+    font-weight: normal;
+    font-size: 50px;
+    letter-spacing: -2.5px;
+    color: #3D5170;
+    text-align: center;
+}
+
+.errorSubMessage {
+    font-weight: normal;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    color: #818EA3;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+@media (max-width: 425px) {
+    .errorMessage {
+        font-size: 40px;
+    }
+}

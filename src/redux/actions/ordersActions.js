@@ -1,4 +1,5 @@
 import {ordersAPI} from "../../api/restapi";
+import {utilsActions} from "./utilsActions";
 
 export const ordersActions = {
   setOrdersPortion: (data) => ({type: "ORDERS/SET_ORDERS_PORTION", payload: data}),
@@ -7,12 +8,20 @@ export const ordersActions = {
 }
 
 export const getOrders = (page = 1, limit = 20, filters = null) => async (dispatch) => {
-  const response = await ordersAPI.getOrders(page, limit, filters)
-  dispatch(ordersActions.setTotalOrdersCount(response.data.count))
-  dispatch(ordersActions.setOrdersPortion(response.data.data))
+  try {
+    const response = await ordersAPI.getOrders(page, limit, filters)
+    dispatch(ordersActions.setTotalOrdersCount(response.data.count))
+    dispatch(ordersActions.setOrdersPortion(response.data.data))
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
+  }
 }
 
 export const getOrderStatus = () => async (dispatch) => {
-  const data = await ordersAPI.getOrderStatus()
-  dispatch(ordersActions.getOrderStatus(data))
+  try {
+    const data = await ordersAPI.getOrderStatus()
+    dispatch(ordersActions.getOrderStatus(data))
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
+  }
 }

@@ -1,4 +1,5 @@
 import {carsAPI} from "../../api/restapi";
+import {utilsActions} from "./utilsActions";
 
 export const carsActions = {
   setCarsPortion: (data) => ({type: "CARS/SET_CARS_PORTION", payload: data}),
@@ -11,14 +12,22 @@ export const carsActions = {
 }
 
 export const getCars = (page, limit, sorters = null) => async (dispatch) => {
-  const response = await carsAPI.getCars(page, limit, sorters)
-  dispatch(carsActions.setTotalCarsCount(response.data.count))
-  dispatch(carsActions.setCarsPortion(response.data.data))
+  try {
+    const response = await carsAPI.getCars(page, limit, sorters)
+    dispatch(carsActions.setTotalCarsCount(response.data.count))
+    dispatch(carsActions.setCarsPortion(response.data.data))
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
+  }
 }
 
 export const getCategories = () => async (dispatch) => {
-  const data = await carsAPI.getCategories()
-  dispatch(carsActions.setCategories(data))
+  try {
+    const data = await carsAPI.getCategories()
+    dispatch(carsActions.setCategories(data))
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
+  }
 }
 
 export const setCarToEdit = (car) => async (dispatch) => {
@@ -31,25 +40,37 @@ export const setCarAction = (action) => async (dispatch) => {
 }
 
 export const putCar = (carId, data) => async (dispatch) => {
-  const response = await carsAPI.putCar(carId, data)
-  if (response.status === 200) {
-    dispatch(carsActions.setCarSuccess(true))
-  } else {
-    dispatch(carsActions.setCarSuccess(false))
+  try {
+    const response = await carsAPI.putCar(carId, data)
+    if (response.status === 200) {
+      dispatch(carsActions.setCarSuccess(true))
+    } else {
+      dispatch(carsActions.setCarSuccess(false))
+    }
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
   }
 }
 
 export const postCar = (data) => async (dispatch) => {
-  const response = await carsAPI.postCar(data)
-  if (response.status === 200) {
-    dispatch(carsActions.setCarSuccess(true))
-  } else {
-    dispatch(carsActions.setCarSuccess(false))
+  try {
+    const response = await carsAPI.postCar(data)
+    if (response.status === 200) {
+      dispatch(carsActions.setCarSuccess(true))
+    } else {
+      dispatch(carsActions.setCarSuccess(false))
+    }
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
   }
 }
 
-export const deleteCar = (carId) => async () => {
-  await carsAPI.deleteCar(carId)
+export const deleteCar = (carId) => async (dispatch) => {
+  try {
+    await carsAPI.deleteCar(carId)
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
+  }
 }
 
 export const setCurrentPage = (page) => async (dispatch) => {

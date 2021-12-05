@@ -1,4 +1,5 @@
 import {citiesAPI} from "../../api/restapi";
+import {utilsActions} from "./utilsActions";
 
 export const citiesActions = {
   setCitiesPortion: (data) => ({type: "CITIES/SET_CITIES_PORTION", payload: data}),
@@ -9,9 +10,13 @@ export const citiesActions = {
 }
 
 export const getCities = (sorters = null) => async (dispatch) => {
-  const response = await citiesAPI.getCities(sorters)
-  dispatch(citiesActions.setTotalCitiesCount(response.data.count))
-  dispatch(citiesActions.setCitiesPortion(response.data.data))
+  try {
+    const response = await citiesAPI.getCities(sorters)
+    dispatch(citiesActions.setTotalCitiesCount(response.data.count))
+    dispatch(citiesActions.setCitiesPortion(response.data.data))
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
+  }
 }
 
 export const setCityToEdit = (city) => async (dispatch) => {
@@ -24,19 +29,27 @@ export const setCityAction = (action) => async (dispatch) => {
 }
 
 export const putCity = (cityId, data) => async (dispatch) => {
-  const response = await citiesAPI.putCity(cityId, data)
-  if (response.status === 200) {
-    dispatch(citiesActions.setCitySuccess(true))
-  } else {
-    dispatch(citiesActions.setCitySuccess(false))
+  try {
+    const response = await citiesAPI.putCity(cityId, data)
+    if (response.status === 200) {
+      dispatch(citiesActions.setCitySuccess(true))
+    } else {
+      dispatch(citiesActions.setCitySuccess(false))
+    }
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
   }
 }
 
 export const postCity = (data) => async (dispatch) => {
-  const response = await citiesAPI.postCity(data)
-  if (response.status === 200) {
-    dispatch(citiesActions.setCitySuccess(true))
-  } else {
-    dispatch(citiesActions.setCitySuccess(false))
+  try {
+    const response = await citiesAPI.postCity(data)
+    if (response.status === 200) {
+      dispatch(citiesActions.setCitySuccess(true))
+    } else {
+      dispatch(citiesActions.setCitySuccess(false))
+    }
+  } catch (e) {
+    dispatch(utilsActions.setError(e.response))
   }
 }
